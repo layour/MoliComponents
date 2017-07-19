@@ -29,6 +29,8 @@ var realLogin = function () {
     if (!flag) {
         return;
     }
+    demoLogin()
+    return;
     var param = {
         userName: trimStr(accountContent),
         password: trimStr(passwordContent),
@@ -69,6 +71,14 @@ var realLogin = function () {
     }, function (err) {
         var message = err.error ? err.error : '登录失败';
         summer.toast({msg: message})
+    })
+}
+function demoLogin(){
+    summer.toast({msg: '登录成功'})
+    summer.openWin({
+        type:'tabBar',
+        id: 'root',
+        isKeep: false,
     })
 }
 function beforeLogin() {
