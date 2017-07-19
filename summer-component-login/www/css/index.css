@@ -1,0 +1,119 @@
+.um-content {
+    padding: 0 0.92rem;
+    background-color: #fff;
+}
+.logo-container {
+    width: 100%;
+    text-align: center;
+    height: 1.02rem;
+    margin-bottom: 1.8rem;
+    margin-top: 1.5rem;
+
+}
+.logo-container .logo {
+    font-size: 1rem;
+    color: #C9A770;
+    height: 100%;
+    width: 3.44rem;
+    display: inline-block;
+}
+
+.login-inputs-box {
+    margin-bottom: 0.82rem;
+}
+.login-inputs-box .um-input-left-icon {
+    padding: 0;
+    height: 100%;
+    margin-top: 0.2rem;
+
+    color: #C9A770;
+}
+.login-inputs-box .um-input-right-icon {
+    padding: 0;
+    height: 100%;
+    margin-top: 0.25rem;
+    color: #dddddd;
+    font-size: 14px;
+    padding-right: 0.1rem;
+}
+.icon-hide.um-input-right-icon {
+    font-size: 12px;
+}
+.login-inputs-box .um-input-text {
+    height: 0.92rem;
+
+}
+.login-inputs-box .form-control {
+    font-size: 0.28rem;
+    color: #333;
+    height: 100%;
+    padding: 0;
+}
+.login-forget-pwd {
+    font-size: 0.28rem;
+    color: #C9A770;
+    margin-top: 0.3rem;
+    text-align: right;
+}
+.login-go-login {
+    width: 100%;
+    background: #C9A770;
+    border-radius: 1.12rem;
+    font-size: 0.3rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    padding: 0;
+    box-shadow: 0 2px 4px 0 #C9A770;
+    margin-bottom: 0.64rem;
+    border: 1px solid #C9A770;
+}
+.login-third-part-box {
+
+}
+.third-part-box-title {
+    font-size: 14px;
+    color: #999999;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 0.36rem;
+}
+.third-part-box-title::before,
+.third-part-box-title::after {
+    content: '';
+    width: 1.54rem;
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+}
+.third-part-box-title::before {
+    left: 0;
+}
+.third-part-box-title::after {
+    right: 0;
+}
+.third-part-icon-box {
+    margin-bottom: 0.56rem;
+}
+
+.font-icon-container {
+    width: 50%;
+    float: left;
+    display: inline-block;
+    text-align: center;
+}
+.login-through-qq,
+.login-through-weixin{
+    font-size: 1rem;
+    color: #D3D3D3;;
+}
+.go-register {
+    font-size: 0.28rem;
+    text-align: center;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #C9A770;
+}

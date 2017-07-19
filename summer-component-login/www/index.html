@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/iconfont.css">
+		<link rel="stylesheet" href="css/iuapmobile.um.css">
+		<link rel="stylesheet" href="css/index.css"/>
+		<script src="js/summer.js" ></script>
+		<script src="js/jquery.min.js" ></script>
+		<script src="js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="js/font.js"></script>
+		<script src="js/summerCommon.js"></script>
+		<script src="js/index.js"></script>
+	</head>
+	<body>
+		<div id="win" class="um-win" >
+			<div id="content" class="um-content">
+				<div class="logo-container">
+					<img src="image/logo.png" alt="" class="logo"/>
+				</div>
+				<div class="login-inputs-box">
+					<div class="um-input-text login-account">
+						<span class="iconfont icon-account um-input-left-icon"></span>
+						<input type="text" class="form-control account-input"   placeholder="邮箱/手机号" />
+						<span class="iconfont icon-backspace um-input-right-icon" onclick="clearNameContent()"></span>
+					</div>
+					<div class="um-input-text login-password">
+						<span class="iconfont icon-key um-input-left-icon"></span>
+						<input type='password' class="form-control password-input" placeholder="密码"  />
+						<span class="iconfont icon-hide um-input-right-icon" onclick="changeInputType(this)"></span>
+					</div>
+				</div>
+
+				<button class="btn login-go-login" onclick="realLogin()">登录</button>
+			</div>
+
+		</div>
+	</body>
+</html>
