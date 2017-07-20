@@ -36,7 +36,7 @@ function toNum(a) {
 function openWin(type) {
 	summer.openWin({
 		"id" : type,
-		"url" : 'summer-component-my/www/html/' + type + '.html'
+		"url" : 'comps/summer-component-my/www/html/' + type + '.html'
 	});
 }
 

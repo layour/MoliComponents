@@ -106,14 +106,14 @@ function getData(){
 function opensearch(){
 	summer.openWin({
 		id : "search",
-		url : "summer-component-contacts/www/html/search.html"
+		url : "comps/summer-component-contacts/www/html/search.html"
 	});
 }
 
 function openWin(obj){
 	summer.openWin({
 		id : "employee",
-		url : "summer-component-contacts/www/html/employee.html",
+		url : "comps/summer-component-contacts/www/html/employee.html",
 		statusBarStyle:"light",
 		pageParam :{
 			id:$(obj).attr("data-userid"),

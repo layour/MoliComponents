@@ -79,7 +79,7 @@ function quitIm() {
 function openWin(type) {
 	summer.openWin({
 		"id" : type,
-		"url" : 'summer-component-my/www/html' + type + '.html',
+		"url" : 'comps/summer-component-my/www/html' + type + '.html',
 	});
 }
 
@@ -103,7 +103,7 @@ function loginQuit() {
 			}
 			summer.openWin({
 				"id" : 'login',
-				"url" : 'summer-component-my/www/html/login.html',
+				"url" : 'comps/summer-component-login/www/html/index.html',
 				"isKeep" : false
 			});
 		}

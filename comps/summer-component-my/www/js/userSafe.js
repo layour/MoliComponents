@@ -34,7 +34,7 @@ function showPrompt() {
 					common.toast(res.msg);
 					summer.openWin({
 						id : 'modifyPassword',
-						url : 'summer-component-my/www/html/modifyPassword.html',
+						url : 'comps/summer-component-my/www/html/modifyPassword.html',
 						pageParam : {
 							password : data,
 							userEmail : document.querySelector(".userEmail").innerHTML
