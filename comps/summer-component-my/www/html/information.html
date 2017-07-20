@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title>个人资料</title>
+		<link rel="stylesheet" href="../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../css/font-icons.css">
+		<link rel="stylesheet" href="../css/information.css">
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a href="#"  class="um-back" onclick="summer.closeWin()">&nbsp;</a>
+				<h3>个人资料</h3>
+			</div>
+			<div class="um-content" id="info-container">
+				<ul class="um-list border">
+					<li class="um-list-item user-header-container um-list-item-arr border" onclick="changeHeaderImg()">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								头像
+							</div>
+							<div class="um-list-item-right">
+								<img class="user-header" src="">
+							</div>
+						</div>
+					</li>
+					<li class="um-list-item border" >
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								账号
+							</div>
+							<div class="um-list-item-right">
+								<span class="form-control tr userCode"></span>
+							</div>
+						</div>
+					</li>
+					<li class="um-list-item um-list-item-arr border"  onclick="goChangePage(this,'name')">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								用户名
+							</div>
+							<div class="um-list-item-right">
+								<span class="form-control tr userName" id="btn1"></span>
+							</div>
+						</div>
+					</li>
+					<li class="um-list-item um-list-item-arr border"  onclick="goChangePage(this,'mobile')">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								手机
+							</div>
+							<div class="um-list-item-right">
+								<span class="form-control tr userMobile" id="btn2"></span>
+							</div>
+						</div>
+					</li>
+					<li class="um-list-item um-list-item-arr border"  onclick="goChangePage(this,'email')">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								邮箱
+							</div>
+							<div class="um-list-item-right">
+								<span class="form-control tr userEmail" id="btn3"></span>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+				<ul class="um-list border">
+					<li class="um-list-item border">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								公司
+							</div>
+							<div class="um-list-item-right">
+								<span class="form-control tr enterprise"></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../js/public/summer.js" ></script>
+	<script src="../js/public/jquery.min.js" ></script>
+	<script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script src="../js/public/common.js"></script>
+	<script src="../js/public/font.js"></script>
+	<script src="../js/information.js"></script>
+</html>

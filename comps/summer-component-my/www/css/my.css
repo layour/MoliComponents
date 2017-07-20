@@ -1,0 +1,181 @@
+/*header*/
+.header {
+    width: 100%;
+    height: 3.5rem;
+    background: #FA4452;
+    background-size: 100% 100%;
+    position:relative;
+}
+.header p {
+    position: absolute;
+}
+
+.header p.headBox {
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 50%;
+    top: 0.6rem;
+    margin-left: -0.75rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.08rem 0 #fff;
+    overflow: hidden;
+    transition: all 0.2s linear;
+}
+.header p.headBox :active{
+    transform: scale(0.95);
+}
+.header p .defaultbg {
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5rem;
+    border: 2px solid #fff;
+    font-size: 0.4rem;
+}
+.header p.headBox img ,
+.header p.headBox .header-img-div {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+}
+.header p.headBox .header-img-div {
+    line-height: 1.5rem;
+    text-align: center;
+    color: #485358;
+    font-size: 0.4rem;
+}
+.header p.nameBox {
+    width: 100%;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    font-size: 0.34rem;
+    margin-top: 0.2rem;
+    color: #fff;
+    text-align: center;
+    top: 2.2rem;
+}
+.status {
+    color: #ffffff;
+    padding: 0 0.2rem;
+    height: 0.36rem;
+    line-height: 0.36rem;
+    border: 1px solid #fff;
+    border-radius: 0.2rem;
+    font-size: 0.28rem;
+    vertical-align: 0.02rem;
+}
+.header p.email {
+    width: 100%;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    font-size: 0.28rem;
+    color: #fff;
+    text-align: center;
+    top: 2.6rem;
+}
+.table-view {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    list-style: none;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.table-view {
+    margin-top: 0.2rem;
+}
+
+.um-header {
+    background-color: #fff;
+}
+.user-company {
+    text-align: center;
+    font-size: 0.34rem;
+    line-height: 0.7rem;
+    color: #fff;
+}
+.user-duty {
+    font-size: 0.28rem;
+    color: #ffffff;
+    text-align: center;
+}
+.um-header-personal {
+    height: 3.58rem;
+}
+.user-pic-box {
+    margin-top: 0.54rem;
+}
+.um-header-personal .um-circle {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.um-list {
+    margin-top: 0.2rem;
+    border: 0;
+}
+.um-list .um-list-item {
+   height: 1rem;
+   margin-left: 0.38rem;
+   position:relative; 
+}
+
+.border:after{
+	 border-bottom: 1px solid #ededed;
+}
+.um-list .um-list-item:last-child {
+    border-width: 0;
+}
+.um-list .um-list-item-inner{
+    font-size: 0.3rem;
+}
+.um-list .um-list-item-body {
+    align-self: center;
+    line-height: 1rem;
+    height: 1rem;
+    padding: 0;
+    font-size: 0.32rem;
+    color: #485358;
+}
+.um-icon:before {
+    font-size: 0.48rem;
+    color: #C8D4E5;
+}
+
+#version .um-icon:before {
+    font-size: 0.56rem;
+}
+.um-list .um-list-item-inner:after {
+    height: 0;
+}
+.um-list .user-name {
+    font-size: 0.3rem;
+    color: #485358;
+    line-height: 0.3rem;
+    margin-left: 0.27rem;
+}
+.um-list .um-list-item-media {
+    margin-left: 0;
+    padding-top: 8px;
+}
+.um-list .um-list-item{
+    transition: all ease 0s;
+    -webkit-transform: all ease 0s;
+}
+#version:before{
+    width: 0;
+    height: 0;
+    border:none;
+}
+#version span{
+	color: #c2c2c2;
+	padding-right:15px
+}

@@ -1,10 +1,11 @@
 {
-  "name": "summer-component-robot",
+  "name": "summer-component-contact",
   "version": "1.0.0",
-  "description": "this is robot component.",
+  "description": "this is contact component.",
   "main": "index.html",
   "dependencies": {
-    "cordova-plugin-ifly-speech": "*"
+    "cordova-plugin-wechat": "*",
+    "cordova-plugin-scancard": "1.0.0"
   },
   "author": "zhoulei"
 }

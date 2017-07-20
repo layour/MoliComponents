@@ -1,0 +1,35 @@
+.um-list .um-list-item {
+    height: 1rem;
+}
+.um-list .um-list-item-body {
+    font-size: 0.32rem;
+    color: #343434;
+    align-self: center;
+    line-height: 1rem;
+    height: 1rem;
+    padding: 0;
+    padding-left: 0.3rem;
+}
+.version-container {
+    text-align: center;
+    color: #fff;
+    margin-top: 0.3rem;
+    font-size: 0.32rem;
+}
+.um-circle{
+	width: 1.2rem;
+	height:1.2rem;
+}
+.um-list{
+	border:none;
+}
+.um-list:after{
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+}
+.um-list .um-list-item-inner:after{
+	height:0;
+}
+.um-list .um-list-item:after{
+	border-bottom: 1px solid #ededed;
+}

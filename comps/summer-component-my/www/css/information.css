@@ -1,0 +1,76 @@
+ .um-list {
+    margin-top: 0.2rem;
+}
+.um-list .um-list-item {
+    height: 1rem;
+    margin-left: 0.38rem;
+}
+.um-list-item .um-list-item-right {
+    padding-right: 0.32rem;
+}
+.um-list-item-arr .um-list-item-right {
+    padding-right: 0.58rem;
+}
+.user-header-container .user-header ,
+.user-header-container .user-header-div {
+    width: 0.6rem;
+    height: 0.6rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+}
+.user-header-container .user-header-div{
+    font-size: 0.24rem;
+    display: inline-block;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #8899aa;
+}
+.um-list .um-list-item-left {
+    color: #485358;
+    font-size: 0.32rem;
+    padding: 0;
+    height: 0.95rem;
+    line-height: 0.95rem;
+}
+.um-list-item-right .form-control {
+    color: #8899aa;
+    font-size:0.32rem;
+}
+
+.um-list-item-arr::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #C0C0C0;
+    border-bottom: 2px solid #C0C0C0;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(0, -50%) rotate(-135deg);
+    transform: translate(0, -50%) rotate(-135deg);
+    margin: 0px 0px 0px 0px;
+    right: 10px;
+    z-index: 2;
+}
+
+.um-actionsheet .btn {
+    font-size: 0.28rem;
+    color: #485358;
+}
+.um-actionsheet .um-list-corner .btn{
+    height: 1rem;
+    line-height: 1rem;
+    padding: 0;
+}
+.um-list{
+	border:none;
+}
+.um-list:after{
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+}
+.um-list .um-list-item-inner:after{
+   	height:0; 
+}
+.um-list .um-list-item:after{border-bottom: 1px solid #ededed;}

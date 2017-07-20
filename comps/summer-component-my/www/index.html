@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/iuapmobile.um.css">
+		<link rel="stylesheet" href="css/font-icons.css">
+		<link rel="stylesheet" href="css/my.css">
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-content">
+				<div class="header"  onclick="openWin('information')">
+					<p class="headBox">
+						<span class="defaultbg"></span>
+						<img id="headImg" src="">
+					</p>
+					<p class="nameBox">
+						<span class="name"></span>
+					</p>
+				</div>
+				<div class="um-list">
+					<a href="javascript:void(0);" class="um-list-item border"
+					onclick="openWin('setting')"> <div class="um-list-item-media um-icon iconfont icon-shezhi1"></div>
+					<div class="um-list-item-inner">
+						<div class="um-list-item-body">
+							设置
+						</div>
+					</div></a>
+					<a href="javascript:void(0);" class="um-list-item border"
+					onclick="openWin('userFeedback')"> <div class="um-list-item-media um-icon iconfont icon-yijianfankui1"></div>
+					<div class="um-list-item-inner">
+						<div class="um-list-item-body">
+							意见反馈
+						</div>
+					</div> </a>
+					<a href="javascript:void(0);" class="um-list-item border"
+					onclick="openWin('aboutUs')"> <div class="um-list-item-media um-icon iconfont icon-guanyuwomen"></div>
+					<div class="um-list-item-inner">
+						<div class="um-list-item-body">
+							关于我们
+						</div>
+					</div></a>
+					<a href="javascript:void(0);" class="um-list-item border" id="version"
+					onclick="checkVersion()"> <div class="um-list-item-media um-icon iconfont icon-banbenshengji"></div>
+					<div class="um-list-item-inner">
+						<div class="um-list-item-body">
+							当前版本
+						</div>
+						<span></span>
+					</div></a>
+			</div>
+		</div>
+		<script src="js/public/jquery.min.js" ></script>
+		<script src="js/public/summer.js"></script>
+		<script src="js/public/common.js"></script>
+		<script src="js/public/font.js"></script>
+		<script src="js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="js/my.js"></script>
+
+	</body>
+</html>

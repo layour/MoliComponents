@@ -1,0 +1,74 @@
+
+.um-list {
+	margin-top: 0.2rem;
+}
+.um-list .um-list-item {
+	height: 1rem;
+}
+.um-list .um-list-item-inner {
+	margin-left: 0.38rem;
+}
+.um-list .um-list-item-left {
+	padding: 0;
+	font-size: 0.32rem;
+	color: #485358;
+	height: 1rem;
+	line-height: 1rem;
+}
+.um-list .um-list-item-right {
+	height: 1rem;
+	line-height: 1rem;
+	padding: 0;
+	font-size: 0.32rem;
+	color: #8899aa;
+	padding-right: 0.55rem;
+}
+.um-list a.um-list-item:before  {
+	right: 0.32rem;
+	
+}
+
+.um-switch1 .um-track {
+	width: 1rem;
+	height: 0.6rem;
+	-webkit-border-radius: 0.2rem;
+	border-radius: 0.4rem;
+	border-width: 0.02rem;
+}
+.um-switch1 .um-handle {
+	width: 0.56rem;
+	height: 0.56rem;
+	left: 0.02rem;
+	top: auto;
+	background: #FFFFFF;
+	border: 0px solid rgba(0,0,0,0.10);
+}
+.um-switch1 .um-handle:before {
+	position: absolute;
+	top: -0.04rem;
+	left: -0.21rem;
+	padding: 0.28rem 0.34rem;
+	content: " ";
+}
+.um-switch1 input[type="checkbox"]:checked ~ .um-track .um-handle {
+	-webkit-transform: translate3d(0.4rem, 0, 0);
+	transform: translate3d(0.4rem, 0, 0);
+	background-color: #fff;
+}
+.um-list .um-list-item {
+     transition: all ease 0s;
+    -webkit-transform: all ease 0s;
+}
+.um-list .um-list-item-inner:after{
+	height:0;
+}
+.um-list .um-list-item:after{
+	border-bottom: 1px solid #ededed;
+}
+.um-list{
+	border:none;
+}
+.um-list:after{
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+}

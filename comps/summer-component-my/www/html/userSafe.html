@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1,  maximum-scale=1">
+		<meta charset="UTF-8">
+		<title>账户与安全</title>
+		<link rel="stylesheet" href="../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../css/userSafe.css">
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header header" id="header">
+				<a href="javascript:void(0);" class="um-back" onclick="summer.closeWin()"></a>
+				<h3>账户安全</h3>
+			</div>
+			<div class="um-content">
+				<div class="um-list border" id="list">
+					<div class="um-list-item border">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								账号
+							</div>
+							<div class="um-list-item-right">
+								<span class="userCode"></span>
+							</div>
+						</div>
+					</div>
+					<div class="um-list-item border">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								登录手机号
+							</div>
+							<div class="um-list-item-right">
+								<span class="userMobile"></span>
+							</div>
+						</div>
+					</div>
+					<div class="um-list-item border">
+						<div class="um-list-item-inner">
+							<div class="um-list-item-left">
+								登录邮箱
+							</div>
+							<div class="um-list-item-right">
+								<span class="userEmail"></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<ul class="um-list border">
+					<li class="um-list-item">
+						<div class="um-list-item-inner" onclick="clearCache()">
+							<div class="um-list-item-left">
+								账号保护
+							</div>
+							<div class="um-list-item-right switch-box">
+								<label class="um-switch1">
+									<input type="checkbox" value="on">
+									<div class="um-track">
+										<div class="um-handle"></div>
+									</div> </label>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="um-list border">
+					<a  class="um-list-item" onclick="showPrompt()">
+					<div class="um-list-item-inner">
+						<div class="um-list-item-left">
+							修改密码
+						</div>
+						<div class="um-list-item-right">
+							<span class="um-gray mr15"> </span>
+						</div>
+					</div> </a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/public/summer.js"></script>
+	<script src="../js/public/jquery.min.js"></script>
+	<script src="../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+	<script src="../js/public/common.js"></script>
+	<script src="../js/public/font.js"></script>
+	<script src="../js/userSafe.js" ></script>
+</html>

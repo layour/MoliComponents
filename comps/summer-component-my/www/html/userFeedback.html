@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../css/userFeedback.css"/>   
+</head>
+<body>
+<div class="um-win" id="index">
+    <div class="um-header" id="header">
+        <a href="javascript:void (0)" class="um-back" onclick="summer.closeWin()"> </a>
+        <h3>意见反馈</h3>
+        <span  class="um-header-right" onclick="uploadHr()">提交</span>
+    </div>
+    <div class="um-content">
+        <div class="box border">
+            <textarea id="question" placeholder="亲，请输入需要解决的问题（必填）" maxlength="200"></textarea>
+            <p class="showBox"><span id="txtShow">0/200</span></p>
+        </div>
+        <div class="box clearfix border">
+            <div class="title-box">
+                <span class="title">问题截图（非必填）</span>
+                <span id="picShow" class="picShow">0/4</span>
+            </div>
+
+            <div id="uploadForm">
+                <div id="ibox">
+                    <div class="con" id="plus" onClick="showActionsheet();">
+                        <div class="con-con">
+                            <div class="font"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/public/summer.js" ></script>
+<script src="../js/public/jquery.min.js" ></script>
+<script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+<script src="../js/public/common.js"></script>
+<script src="../js/public/font.js"></script>
+<script src="../js/userFeedback.js"></script>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>summer</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   	<link rel="stylesheet" href="../css/iuapmobile.um.css" charset="utf-8"/>   
+    <link rel="stylesheet" href="../css/employee.css">
+  </head>
+<body>
+    <div id="wrap" class="um-win">	
+        <div id="header" class="um-header-fixed" onclick="closeWin();">
+            	<a href="#"  class="um-back"></a>
+            	<h3 class="tc " id="topheader"> </h3>
+         </div> 
+        <div class="main um-content"  >
+        	<div class="headerbgc">
+            	<div class="i-box tc" id="headImg">
+	            </div>
+	            <p class="i-name" id="name"> </p>
+        	</div>
+        	<div class="middlecontent">
+        		<ul class="item border">
+                <li class="list border">
+                    <p class="fl tit">手机号码</p>
+                    <span class="fr" id="mobile"></span>
+                    <a href="tel:12345678" id="tel"></a>
+                </li>
+                <li class="list">
+                    <p class="fl tit">公司邮箱</p>
+                    <span class="fr" id="email"></span>
+                </li>
+            </ul>
+        	</div>
+            
+            <div class="bottomcontent" ></div>
+        </div>
+        <div class="btnBox" onclick="openChat()" >
+        	<div class="submitbutton"  id="submit">聊天</div>
+        </div>
+    </div>
+     <input type="hidden" class="hiddenId" value=""/> 
+</body>
+<script type="text/javascript" src="../js/public/jquery.min.js"></script>
+<script type="text/javascript" src="../js/public/summer.js"></script>
+<script type="text/javascript" src="../js/public/font.js"></script>
+<script type="text/javascript" src="../js/public/summerCommon.js"></script>
+<script type="text/javascript" src="../js/employee.js"></script>
+</html>

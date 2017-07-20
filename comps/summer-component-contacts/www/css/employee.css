@@ -1,0 +1,167 @@
+@charset "utf-8";
+/*header*/
+.um-header-fixed{
+	width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+   	min-height:44px;
+    z-index: 99;
+    background: rgba(255,255,255,0);
+}
+.um-header-fixed h3{
+	color:white;
+	
+	font-weight:500;
+	opacity:0;
+}
+img {
+    vertical-align:top; 
+}
+/* CSS Document */
+html{
+	background:#fafafa;
+	overflow:scroll;
+}
+.headerbgc{
+	width:100%;
+	height:3.98rem;
+	background:#FA4452 ;
+	background-size:100% 100%;
+}
+.header{height:3.98rem; position:relative; z-index:1;}
+@font-face {
+	font-family: "ratchicons";
+	src: url('../../../css/fonts/ratchicons.eot'); 
+	src: url('../../../css/fonts/ratchicons.eot') format('embedded-opentype'), 
+	url('../../../css/fonts/ratchicons.woff') format('woff'), 
+	url('../../../css/fonts/ratchicons.ttf') format('truetype'), 
+	url('../../../css/fonts/ratchicons.svg') format('svg'); /* iOS 4.1- */
+}
+.icon{
+	font-family:"ratchicons" !important;
+	font-size:0.5rem;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-left-nav{
+	position: absolute;
+	top:0.2rem;
+	left:0.25rem;
+	color:#FFFFFF;
+}
+.icon-left-nav:before{
+	content: '\e82d';
+}
+.i-box{
+ 	 width:1.5rem;
+	 height:1.5rem;  
+	 line-height:1.5rem;
+	position:absolute;
+	left:50%;
+	top:1.2rem;
+	transform:translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	border-radius:50%;
+	box-shadow:0 0 0 0.05rem #fff; 
+	font-family:"微软雅黑";
+	font-size:0.42rem;
+	color:#fff;
+}
+/* .i-box p{
+ 
+	border-radius:50%;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	line-height:1.5rem;
+	text-align:center;
+	font-family:"微软雅黑";
+	font-size:0.42rem;
+	color:#fff;
+} */
+ 
+.um-back:before {
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+.i-box img{width:100%; height:100%; margin:0; padding:0;}
+.i-name{position:absolute; top:3rem; width:100%; height:0.4rem; line-height:0.4rem; font-size:0.32rem; color:#fff; text-align:center;}
+.main{position:relative; z-index:1;}
+.item{
+	background:#ffffff;
+	padding:0 4%;
+	position: relative;
+}
+.list{
+	list-style:none;
+	padding:0.25rem 0;
+	overflow:hidden;
+	position:relative;
+}
+.list:last-child{
+	border-bottom:none;
+}
+.fl{
+	float:left;
+	font-size:0.32rem;
+	line-height:0.4rem;
+	display:inline-block;
+	color:#2e2e2e;
+	width:25%;
+}
+.fr{
+	float:right;
+	font-size:0.32rem;
+	line-height:0.4rem;
+	display:inline-block;
+	color:#666666;
+	width:75%;
+}
+.i-right{
+	background:url(../image/contacts/right.png) no-repeat right center;
+	background-size:0.17rem 0.3rem;
+	padding-right:0.3rem;
+}
+.color{color:#1baede;}
+#tel{display:block; width:0.38rem; height:0.38rem; background:url(../image/contacts/icon-call.png) no-repeat left top; background-size:100% 100%; position:absolute; right:0; top:0.26rem;}
+
+#footer{height:0.9rem; position:relative; z-index:1;}
+
+#wrap .btnBox{text-align:center; position:relative;   width:100%; height:45px; z-index:2;}
+#wrap .btnBox #submit{width:100%; height:45px; line-height:45px;  border:none;  border-top:1px solid #dcdcdc;color:#1baede; font-size:0.3rem; position:absolute; left:0; top:0;box-shadow: none;}
+.submitbutton:active{
+	opacity:0.5;	
+}
+.um-header {
+    background-color: #ececec;
+}
+.um-header-title, .um-header h3 {
+	font-size: 17px;
+	color: #333333;
+    font-weight:500;
+}
+.um-back,
+.um-header-left {
+	    position: absolute;
+    height: 40px;
+    top:4px;
+    left:15px;
+} 
+.um-content{
+	background:#f4f4f4;
+}
+.um-footer-fixed {
+    position: relative;
+    height:45px;
+}
+.item:after{
+	border-top:1px solid #e6e6e6;
+}
+.list:after{
+	border-bottom:1px solid #e6e6e6;
+}
