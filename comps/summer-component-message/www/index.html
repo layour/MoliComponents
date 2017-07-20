@@ -1,0 +1,1299 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>消息分类公共页</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="./css/iuapmobile.um.listview.css"/>
+    <style>
+        .um-header {
+            background-color: #ececec;
+        }
+
+        .um-header-title, .um-header h3 {
+            font-size: 17px;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .um-back,
+        .um-header-left {
+            height: 40px;
+            line-height: 40px;
+            min-width: 40px;
+            top: 4px;
+            left: 15px;
+        }
+
+        .um-content {
+            background: #f4f4f4;
+        }
+
+        .um-footer-fixed {
+            position: relative;
+            height: 45px;
+        }
+
+        .um-listview-wrap .um-list {
+            border-width: 0;
+
+        }
+
+        .um-listview-row {
+            height: 1.4rem;
+            border-bottom: 1px solid #dddddd;
+            padding-left: 0.19rem;
+        }
+
+        .um-list .msg-info {
+            margin: 0;
+            padding: 0;
+            margin-right: 0.3rem;
+            height: 1.4rem;
+            line-height: 1.4rem;
+            position: relative;
+        }
+
+        .msg-info .um-badge {
+            position: absolute;
+            top: 0.1rem;
+            right: -0.1rem;
+            width: 0.4rem;
+            height: 0.4rem;
+            text-align: center;
+            line-height: 0.4rem;
+            padding: 0;
+            font-size: 0.2rem;
+            border-radius: 50%;
+            min-width: auto;
+        }
+
+        .msg-info .um-badge.um-badge-small {
+            width: 0.2rem;
+            height: 0.2rem;
+            right: 0.05rem;
+            top: 0.3rem;
+
+        }
+
+        .msg-info .msg-header-img,
+        .msg-info .msg-header-img-div {
+            width: 1.01rem;
+            height: 1.01rem;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .msg-info .msg-header-img-div {
+            display: inline-block;
+            font-size: 0.28rem;
+            color: #fff;
+            background-color: #FF6347;
+            line-height: 1.01rem;
+            text-align: center;
+        }
+
+        .um-list .um-list-item-inner:after {
+            height: 0;
+        }
+
+        .um-list .um-list-item-body {
+            padding: 0;
+            height: 1.4rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+        }
+
+        .um-list-item-body .msg-title {
+            font-size: 0.32rem;
+            color: #343434;
+            margin-bottom: 0.05rem;
+        }
+
+        .um-list-item-body .msg-content {
+            font-size: 0.28rem;
+            color: #a9a9a9;
+        }
+
+        .um-list .msg-time-content {
+            text-align: right;
+            padding: 0.3rem 0.3rem 0 0;
+            font-size: 0.26rem;
+            color: #c0c0c0;
+            height: 1.4rem;
+            width: 1.60rem;
+        }
+
+        .um-swipe-btns .um-swipe-btn {
+            width: auto;
+            font-size: 0.3rem;
+            padding: 0 0.4rem;
+            color: #fff;
+        }
+
+        .um-swipe-btns .um-stick {
+            background-color: #C7C7CD;
+        }
+
+        .um-swipe-btns .um-change-read-state {
+            background-color: #FF9D00;
+        }
+
+        .um-swipe-btns .um-delete {
+            background-color: #FF3A30;
+        }
+
+        .empty {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding-top: 1.8rem;
+            position: fixed;
+            left: 0;
+            top: 1.47rem;
+        }
+
+        .empty img {
+            display: block;
+            margin: 0 auto;
+            width: 2.11rem;
+            height: 2.87rem;
+        }
+
+        .empty span {
+            display: block;
+            margin: 10px auto 300px;
+            width: 4rem;
+            height: 0.5rem;
+            text-align: center;
+            line-height: 0.5rem;
+            color: #a9a9a9;
+            font-size: 0.28rem;
+            font-weight: 400;
+        }
+
+        /*新增加*/
+        .um-listview-row.item-stick {
+            background-color: #F3F3F7;
+        }
+
+        /*遮罩层*/
+        .overlay {
+            background-color: rgba(0, 0, 0, 0);
+            display: none;
+
+        }
+
+        .popover-box {
+            position: fixed;
+            top: 0.16rem;
+            right: 0.1rem;
+            list-style: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 0.04rem;
+            width: 2.5rem;
+            z-index: 999;
+            display: none;
+        }
+
+        .popover-box::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 0.1rem solid transparent;
+            border-right: 0.1rem solid transparent;
+            border-bottom: 0.2rem solid rgba(0, 0, 0, 0.8);
+            position: absolute;
+            top: -0.14rem;
+            right: 0.46rem;
+        }
+
+        .popover-item {
+            margin: 0 0.12rem;
+            height: 0.7rem;
+            line-height: 0.7rem;
+            border-bottom: 1px solid #585858;
+        }
+
+        .popover-icon {
+            font-size: 0.26rem;
+            color: #fff;
+        }
+
+        .popover-text {
+            font-size: 0.28rem;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            margin-left: 0.22rem;
+        }
+
+        .um-frame {
+            background-color: #F6F6F6;
+        }
+
+        .search {
+            background: #f4f4f4;
+            padding: 10px;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        .search .s-box {
+            background: #ffffff;
+            border-radius: 5px;
+            height: 30px;
+            position: relative;
+        }
+
+        .mid-box {
+            display: inline-block;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .icon-search {
+            float: left;
+            width: 16px;
+            height: 16px;
+            margin-top: 4px;
+            margin-right: 5px;
+            color: #999999;
+
+        }
+
+        .s-box .txt {
+            float: left;
+            line-height: 30px;
+            font-size: 14px;
+            color: #adadad;
+            position: relative;
+            vertical-align: bottom;
+        }
+
+        /*群头像*/
+        .group-photo-container {
+            display: flex;
+
+            width: 1.01rem;
+            height: 1.01rem;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        .flex-column {
+            flex-direction: column;
+        }
+        .flex-row {
+            flex-direction: row;
+        }
+        .group-photo-top-box,
+        .group-photo-bottom-box {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .group-photo-top-box {
+            margin-bottom: 1px;
+        }
+        .group-photo-top-box .group-four-item:first-child,
+        .group-photo-bottom-box .group-four-item:first-child {
+            margin-right: 1px;
+        }
+        img.group-four-item {
+            width: 0.5rem;
+            height: 0.5rem;
+            display: block;
+        }
+
+       .group-photo-top-box  div.group-four-item {
+           flex: 1;
+            text-align: center;
+            font-size: 0.16rem;
+            line-height: 0.7rem;
+        }
+        .group-photo-bottom-box  div.group-four-item {
+            flex: 1;
+            text-align: center;
+            font-size: 0.16rem;
+            line-height: 0.5rem;
+        }
+        /*三个人员的样式*/
+        .group-photo-left-box,
+        .group-photo-right-box{
+            flex: 1;
+            height: 1.01rem;
+        }
+        .group-photo-right-box {
+            display: flex;
+            flex-direction: column;
+            margin-left: 1px;
+        }
+        .group-photo-left-box .group-three-item {
+            height: 1.01rem;
+            display: block;
+            text-align: center;
+            font-size: 0.16rem;
+            line-height: 1rem;
+        }
+        .group-photo-right-box img.group-three-item {
+            width: 0.5rem;
+            width: 100%;
+            display: block;
+        }
+        .group-photo-right-box div.group-three-item {
+            flex: 1;
+            text-align: center;
+            font-size: 0.16rem;
+            line-height: 0.5rem;
+        }
+        .group-photo-right-box .group-three-item:first-child {
+            margin-bottom: 1px;
+        }
+        .l4 {
+            line-height: 0.4rem !important;
+        }
+        /*两个人*/
+        img.group-two-item {
+            width:0.5rem;
+            height: 1.01rem;
+            display: block;
+        }
+        div.group-two-item {
+            flex: 1;
+            font-size: 0.16rem;
+            text-align: center;
+            line-height: 1rem;
+            height: 1rem;
+        }
+        .group-two-item:first-child {
+            margin-right: 1px;
+        }
+        /*四分之一*/
+        .top-left-circle {
+            -webkit-border-radius: 100% 0 0 0;
+            -moz-border-radius: 100% 0 0 0;
+            border-radius: 100% 0 0 0;
+        }
+
+        .top-right-circle {
+            border-radius: 0 100% 0 0;
+        }
+
+        .bottom-right-circle {
+            -webkit-border-radius: 0 0 100% 0;
+            -moz-border-radius: 0 0 100% 0;
+            border-radius: 0 0 100% 0;
+        }
+
+        .bottom-left-circle {
+            -webkit-border-radius: 0 0 0 100%;
+            -moz-border-radius: 0 0 0 100%;
+            border-radius: 0 0 0 100%;
+        }
+        /*半圆*/
+        .left-circle {
+            border-radius: 1rem 0 0 1rem;
+        }
+        .right-circle {
+            border-radius: 0 1rem 1rem 0;
+        }
+    </style>
+    <script>
+    (function (doc, win) {
+	     var docEl = doc.documentElement,
+	          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	          recalc    = function () {
+	                 var clientWidth = docEl.clientWidth;
+	                 if (clientWidth>=750) {
+	                    clientWidth = 750;
+	                 };
+	                 if (!clientWidth) return;
+	               docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+	          };
+	          if (!doc.addEventListener) return;
+	          win.addEventListener(resizeEvt, recalc, false);
+	          doc.addEventListener('DOMContentLoaded', recalc, false);
+	})(document, window);
+    </script>
+	<script id="msgTmlp" type="text/x-dot-template">
+        {{~ it :value:index}}
+        {{? value.type=='chat' || value.type=='groupchat'}}
+        {{? value.isTop=='true' && value.noDisturb=='true'}}
+        <li class="um-listview-row chat-item item-stick item-noDisturb" data-id="{{= value.chat.chatID}}"
+            data-type="{{= value.type}}">
+            {{?? value.isTop=='true'}}
+        <li class="um-listview-row chat-item item-stick" data-id="{{= value.chat.chatID}}" data-type="{{= value.type}}">
+            {{?? value.noDisturb=='true'}}
+        <li class="um-listview-row chat-item item-noDisturb" data-id="{{= value.chat.chatID}}"
+            data-type="{{= value.type}}">
+            {{??}}
+        <li class="um-listview-row chat-item" data-id="{{= value.chat.chatID}}" data-type="{{= value.type}}">
+            {{?}}
+            <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                <div class="um-swipe-btns">
+                    {{? value.isTop=='true'}}
+                    <span class="um-swipe-btn um-stick ">取消置顶</span>
+                    {{??}}
+                    <span class="um-swipe-btn um-stick ">置顶</span>
+                    {{?}}
+                    {{? value.noDisturb=='true'}}
+                    <span class="um-swipe-btn um-change-read-state">取消免打扰</span>
+                    {{??}}
+                    <span class="um-swipe-btn um-change-read-state">免打扰</span>
+                    {{?}}
+                    <span class="um-swipe-btn um-delete ">删除</span>
+                </div>
+                <div class="um-list-item-media msg-info">
+                    {{? value.type=='chat'}}
+                    {{? value.chat.userPhoto}}
+                    <img alt="" src="{{= value.chat.userPhoto}}" class="msg-header-img">
+                    {{?? value.chat.shortName}}
+                    <div class="msg-header-img-div" style="{{= value.chat.bgc}}">{{= value.chat.shortName}}</div>
+                    {{?}}
+                    {{?? value.type=='groupchat'}}
+                    {{? !value.members}}
+                    <img alt="" src="../static/img/group.png" class="msg-header-img">
+                    {{?? value.members.length==4}}
+                    <div class="group-photo-container flex-column">
+                        <div class='group-photo-top-box'>
+                            {{? value.members[0].photo != ''}}
+                            <img alt="" src="{{= value.members[0].photo}}"
+                                 class="msg-user-img group-four-item top-left-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-four-item top-left-circle"
+                                 style="{{= value.members[0].bgc}}">{{= value.members[0].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                            {{? value.members[1].photo}}
+                            <img alt="" src="{{= value.members[1].photo}}"
+                                 class="msg-user-img group-four-item top-right-circle">
+                            {{??}}
+                            <div class="msg-small-img-difour group-four-item top-right-circle"
+                                 style="{{= value.members[1].bgc}}">{{= value.members[1].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                        </div>
+                        <div class='group-photo-bottom-box'>
+                            {{? value.members[2].photo}}
+                            <img alt="" src="{{= value.members[2].photo}}"
+                                 class="msg-user-img group-four-item bottom-left-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-four-item bottom-left-circle"
+                                 style="{{= value.members[2].bgc}}">{{= value.members[2].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                            {{? value.members[3].photo}}
+                            <img alt="" src="{{= value.members[3].photo}}"
+                                 class="msg-user-img group-four-item bottom-right-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-four-item bottom-right-circle"
+                                 style="{{= value.members[3].bgc}}">{{= value.members[3].name.slice(-1)}}
+                            </div>
+                            {{?}}
+
+                        </div>
+                    </div>
+                    {{?? value.members.length==3}}
+                    <div class="group-photo-container flex-row">
+                        <div class='group-photo-left-box'>
+                            {{? value.members[0].photo}}
+                            <img alt="" src="{{= value.members[0].photo}}"
+                                 class="msg-user-img group-three-item left-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-three-item left-circle"
+                                 style="{{= value.members[0].bgc}}">{{= value.members[0].name.slice(-1)}}
+                            </div>
+                            {{?}}
+
+                        </div>
+                        <div class='group-photo-right-box'>
+                            {{? value.members[1].photo}}
+                            <img alt="" src="{{= value.members[1].photo}}"
+                                 class="msg-user-img group-three-item top-right-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-three-item top-right-circle"
+                                 style="{{= value.members[1].bgc}}">{{= value.members[1].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                            {{? value.members[2].photo}}
+                            <img alt="" src="{{= value.members[3].photo}}"
+                                 class="msg-user-img group-three-item bottom-right-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-three-item bottom-right-circle l4"
+                                 style="{{= value.members[2].bgc}}">{{= value.members[2].name.slice(-1)}}
+                            </div>
+                            {{?}}
+
+                        </div>
+                    </div>
+                    {{?? value.members.length==2}}
+                    <div class="group-photo-container flex-row">
+                            {{? value.members[0].photo}}
+                            <img alt="" src="{{= value.members[0].photo}}"
+                                 class="msg-user-img group-two-item left-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-two-item left-circle"
+                                 style="{{= value.members[0].bgc}}">{{= value.members[0].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                            {{? value.members[1].photo}}
+                            <img alt="" src="{{= value.members[1].photo}}"
+                                 class="msg-user-img group-two-item right-circle">
+                            {{??}}
+                            <div class="msg-small-img-div group-two-item right-circle"
+                                 style="{{= value.members[1].bgc}}">{{= value.members[1].name.slice(-1)}}
+                            </div>
+                            {{?}}
+                    </div>
+                    {{?}}
+                    {{?}}
+                    {{? value.newCount>99}}
+                    <span class="um-badge um-badge-small"></span>
+                    {{?? value.newCount>0 && value.newCount<=99}}
+                    <span class="um-badge">{{= value.newCount}}</span>
+                    {{?}}
+                </div>
+                <div class="um-list-item-inner">
+                    <div class="um-list-item-body">
+                        {{? value.type=='chat'}}
+                        {{? value.chat.userName}}
+                        <h4 class="um-media-heading msg-title">{{= value.chat.userName}}</h4>
+                        {{??}}
+                        <h4 class="um-media-heading msg-title">[未注册用户]</h4>
+                        {{?}}
+                        {{?? value.type=='groupchat'}}
+
+                        {{? value.chat.groupName}}
+                        <h4 class="um-media-heading msg-title um-text-overflow">{{= value.chat.groupName}}</h4>
+                        {{??}}
+                        <h4 class="um-media-heading msg-title">[未注册群组]</h4>
+                        {{?}}
+
+                        {{?}}
+                        <p class="um-text-overflow msg-content">{{= judgeType(value.message)}}</p>
+                    </div>
+                    {{? value.date}}
+                    <div class="msg-time-content">
+                        {{= value.date}}
+                    </div>
+                    {{?}}
+                </div>
+            </a>
+        </li>
+        {{?? }}
+        {{? value.isTop=='true' && value.noDisturb=='true'}}
+        <li class="um-listview-row account-item item-stick item-noDisturb" data-id="{{= value.account.accountID}}">
+            {{?? value.isTop=='true'}}
+        <li class="um-listview-row account-item item-stick" data-id="{{= value.account.accountID}}">
+            {{?? value.noDisturb=='true'}}
+        <li class="um-listview-row account-item item-noDisturb" data-id="{{= value.account.accountID}}">
+            {{??}}
+        <li class="um-listview-row account-item" data-id="{{= value.account.accountID}}">
+            {{?}}
+            <a href="#" class="um-list-item um-swipe-action um-no-icon">
+                <div class="um-swipe-btns">
+                    {{? value.isTop=='true'}}
+                    <span class="um-swipe-btn um-stick ">取消置顶</span>
+                    {{??}}
+                    <span class="um-swipe-btn um-stick ">置顶</span>
+                    {{?}}
+                    {{? value.noDisturb=='true'}}
+                    <span class="um-swipe-btn um-change-read-state">取消免打扰</span>
+                    {{??}}
+                    <span class="um-swipe-btn um-change-read-state">免打扰</span>
+                    {{?}}
+                    <span class="um-swipe-btn um-delete ">删除</span>
+                </div>
+                <div class="um-list-item-media msg-info">
+                    <img alt="" src="../static/img/Honour/{{= convertImg(value.account.accountID)}}.png"
+                         class="msg-header-img">
+                    {{? value.newCount>99}}
+                    <span class="um-badge um-badge-small"></span>
+                    {{?? value.newCount>0 && value.newCount<=99}}
+                    <span class="um-badge">{{= value.newCount}}</span>
+                    {{?}}
+                </div>
+                <div class="um-list-item-inner">
+                    <div class="um-list-item-body">
+                        {{? value.account.accountName}}
+                        <h4 class="um-media-heading msg-title">{{= value.account.accountName}}</h4>
+                        {{??}}
+                        <h4 class="um-media-heading msg-title">其他</h4>
+                        {{?}}
+                        <p class="um-text-overflow msg-content">{{= judgeType(value.message)}}</p>
+                    </div>
+                    {{? value.date}}
+                    <div class="msg-time-content">
+                        {{= value.date}}
+                    </div>
+                    {{?}}
+                </div>
+            </a>
+        </li>
+        {{?}}
+        {{~}}
+    </script>
+</head>
+<body>
+<div class="um-frame pr">
+    <div class="um-content">
+        <div class="um-listview-wrap" id="listview">
+            <div class="search" onclick="openSearchWin()">
+                <div class="s-box">
+                    <div class="mid-box clearfix">
+                        <span class="iconfont icon-search"></span>
+
+                        <p class="txt">搜索</p>
+                    </div>
+                </div>
+            </div>
+            <ul class="um-list um-no-active">
+
+            </ul>
+        </div>
+        <!-- 消息为空 -->
+        <div class="empty none">
+            <img src="./image/empty.png" alt=""/>
+            <span>您还没有收到消息</span>
+        </div>
+    </div>
+   
+
+</div>
+
+</body>
+<script type="text/javascript" src="../../../js/summer.js"></script>
+<script type="text/javascript" src="../../../js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/doT.min.js"></script>
+<script src="../../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+<script src="./js/iuapmobile.frameworks.listview.js"></script>
+<script type="text/javascript" src="./js/summerCommon.js"></script>
+
+<script>
+    /*******************************************全局变量********************************************************/
+//保存第一次请求的全部数据；
+    var allData = [];
+    //保存未读消息总数
+    var unReadNum = 0;
+    //检测是否有最新消息数组
+    var messagenum = [];
+    /*假数据*/
+    var messageData = [{
+    	"date": "昨天",
+        "newCount": "0",
+        "message": "单人聊天信息",
+        "type": "chat",
+        "chat": {"userName": "超", "userPhoto": "./image/head1.jpg", "groupName": "很吉利", "chatID": "6ps36n2x9fxgmmh9fu1amj7c"},
+        "isTop": "false",
+        "noDisturb": "false"
+    },{
+        "members": [{
+            "name": "0",
+            "photo": ''
+        }, {
+            "name": "1",
+            "photo": ""
+        }, {
+            "name": "2",
+            "photo": ""
+        }, {
+            "name": "3",
+            "photo": ""
+        }],
+        "date": "昨天",
+        "newCount": "0",
+        "message": "张三:颜值担当",
+        "type": "groupchat",
+        "chat": {"userName": "张三", "userPhoto": "", "groupName": "开发测试工作组", "chatID": "60ykk28bhlss8kllfgmr729c"},
+        "isTop": "false",
+        "noDisturb": "false"
+    }, {
+        "members": [{
+            "name": "m",
+            "photo": ""
+        }, {
+            "name": "n",
+            "photo": ""
+        }, {
+            "name": "x",
+            "photo": ""
+        }],
+        "date": "昨天",
+        "newCount": "4",
+        "message": "磊:啦啦啦啦啦",
+        "type": "groupchat",
+        "chat": {"userName": "磊", "userPhoto": "", "groupName": "测试群", "chatID": "nqs0bo4kispb2w815u49iuir"},
+        "isTop": "false",
+        "noDisturb": "false"
+    }, {
+        "members": [{
+            "name": "亮",
+            "photo": ''
+        }, {
+            "name": "齐",
+            "photo": "./image/head2.jpg"
+        }],
+        "date": "昨天",
+        "newCount": "0",
+        "message": "磊:啦啦啦啦啦",
+        "type": "groupchat",
+        "chat": {"userName": "吴晓亮", "userPhoto": "", "groupName": "测试消息", "chatID": "6ps36n2x9fxgmmh9fu1amj7c"},
+        "isTop": "false",
+        "noDisturb": "false"
+    },  
+    /*,
+     {"action":"dissolveGroup","groupId":"moqxyhh5xslt69kwqah9peai"}*/]
+    /*欢迎数据*/
+    /*******************************************入口函数********************************************************/
+    summerready = function () {
+      
+        //init();
+        renderDemo(messageData);
+        //pub_showPopover()
+        //构造控件实例
+        var listview = UM.listview("#listview");
+        listview.on("itemDelete", function (sender, args) {
+            //这是可以编写行删除逻辑，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+            deleteItem(args.$target);
+            var $badge = args.$target.find('.um-badge');
+            var num = $badge.text() ? parseInt($badge.text()) : 0;
+            unReadNum -= num;
+            isReading();
+            args.$target.slideUp(500, function () {
+                args.$target.remove();
+            });
+
+            allData.splice(args.rowIndex, 1);
+        });
+        listview.on("itemClick", function (sender, args) {
+            if (args.$target.hasClass('chat-item')) {
+                openChat(args.$target);
+            } else {
+                //碧桂园项目修改的，本身应用通知也有问题
+                if (args.$target.text().indexOf("请参与问卷") !== -1) {
+                    openQuestion(args.$target);
+                } else if (args.$target.attr("data-id") == "xitongxiaoxi") {
+                    watchReadNum(args.$target);
+                    return false;
+                } else {
+                    openAccount(args.$target)
+                }
+            }
+        });
+        listview.on("itemStick", function (sender, args) {
+            var $stick = args.$target.find('.um-stick');
+            if ($stick.text() == '置顶') {
+                /*改变内容，并还原*/
+                $stick.text('取消置顶');
+                args.$target.addClass('item-stick')
+                        .find('.um-list-item').css('transform', 'translate3d(0, 0, 0)');
+                /*同步页面和数据*/
+                $('#listview .um-list').prepend(args.$target);
+                allData[args.rowIndex].isTop = 'true';
+                var changeData = allData[args.rowIndex];
+                allData.splice(args.rowIndex, 1);
+                allData.unshift(changeData);
+                stickMessage(args.$target, 'true');
+            } else if ($stick.text() == '取消置顶') {
+                /*改变内容，并还原*/
+                $stick.text('置顶');
+                args.$target.find('.um-list-item').css('transform', 'translate3d(0, 0, 0)');
+                allData[args.rowIndex].isTop = 'false';
+                var changeItem = allData[args.rowIndex];
+                args.$target.removeClass('item-stick');
+                /*同步页面和数据*/
+                /*如果存在置顶列，不存在置顶列，位置不变*/
+                if ($('#listview').find('.item-stick:last').length > 0) {
+
+                    $('#listview').find('.item-stick:last').after(args.$target);
+
+                    var stickCount = getStickItemCount();
+                    /*args.rowIndex<stickCount 先插入再删除不会有影响
+                     * 相等表示最后一个置顶列,allData中的位置不变
+                     * */
+                    //删除选中项
+                    allData.splice(args.rowIndex, 1);
+                    //将更改数据放于置顶区下部
+                    allData.splice(stickCount, 0, changeItem);
+
+                }
+                stickMessage(args.$target, 'flase');
+            }
+
+        });
+        listview.on("changeReadState", function (sender, args) {
+            /* alert("您改变了列表的第" + (args.rowIndex + 1) +　"行！为已读");
+             console.log(args);
+             console.log(sender);*/
+            var $ignore = args.$target.find('.um-change-read-state');
+            if ($ignore.text() == '免打扰') {
+                $ignore.text('取消免打扰');
+                args.$target.find('.um-list-item').css('transform', 'translate3d(0, 0, 0)');
+                allData[args.rowIndex].noDisturb = 'true';
+                ignoreMessage(args.$target, 'true');
+            } else if ($ignore.text() == '取消免打扰') {
+                $ignore.text('免打扰');
+                args.$target.find('.um-list-item').css('transform', 'translate3d(0, 0, 0)');
+                allData[args.rowIndex].noDisturb = 'false';
+                ignoreMessage(args.$target, 'flase');
+            }
+
+        });
+        listview.on("itemSwipeLeft", function (sender, args) {
+            //这里可以处理行左滑事件，参数sender即为当前列表实例对象，args对象有2个属性，即rowIndex(行索引)和$target(目标行的jquery对象)
+            sender.showItemMenu(args.$target);
+        });
+        getNewInfo();
+        summer.window.setRefreshHeaderInfo({
+            visible: true,
+            bgColor: '#F6F6F6',
+            textColor: '#4d4d4d',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true,
+            autoRefresh: true
+        }, function (ret, err) {
+            //init();
+            renderDemo(messageData);
+            summer.window.refreshHeaderLoadDone();
+        });
+        
+    };
+    /**********************************************函数方法*****************************************************/
+    function openSearchWin() {
+        summer.openWin({
+            id: "search",
+            url: "Contacts/Search.html",
+            pageParam: {
+                winId: "Honour"
+            },
+            create: "false"
+        });
+    }
+    /*渲染模拟数据*/
+    function renderDemo(data) {
+        if (data.length > 0) {
+            allData = handleData(data);
+            var messageText = doT.template($("#msgTmlp").text());
+            $("#listview .um-list").html(messageText(allData));
+            getUnReadNum(allData);
+        } else {
+            /*没有消息返回时，显示背景图片*/
+            $('.um-content .empty').removeClass('none');
+        }
+    }
+    /*渲染界面*/
+    function renderData(args) {
+        summer.showProgress();
+        if (JSON.parse(args.result).length > 0) {
+            allData = handleData(JSON.parse(args.result));
+            $('.um-content .empty').addClass('none');
+            var messageText = doT.template($("#msgTmlp").text());
+            $("#listview .um-list").html(messageText(allData));
+            getUnReadNum(allData);
+        } else {
+            /*没有消息返回时，显示背景图片*/
+            $('.um-list.um-no-active').empty();
+            $('.um-content .empty').removeClass('none');
+        }
+        summer.hideProgress();
+    }
+    /*删除功能某项聊天*/
+    function deleteItem(ele) {
+        var type = ele.hasClass('chat-item') ? 'deleteChat' : 'deleteMessage';
+        var command = {
+            "method": "YYIM." + type,
+            "params": {
+                id: ele.attr('data-id'),
+                "callback": "_deleteFn()"
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [command]);
+    }
+    /*删除聊天记录的回调函数*/
+    function _deleteFn(args) {
+        console.log(args);
+    }
+    /*消息免打扰*/
+    function ignoreMessage(ele, ignoreStatus) {
+        if (ele.hasClass('chat-item')) {
+            var command = {
+                "method": "YYIM.setNoDisturb",
+                "params": {
+                    "chatID": ele.attr('data-id'),
+                    "noDisturb": ignoreStatus,
+                    "type": ele.attr('data-type'),
+                    "callback": "_ignoreFn()"
+                }
+            }
+        } else {
+            var command = {
+                "method": "YYIM.setNoDisturb",
+                "params": {
+                    "accountID": ele.attr('data-id'),
+                    "noDisturb": ignoreStatus,
+                    "callback": "_ignoreFn()"
+                }
+            }
+        }
+
+        cordova.exec(null, null, "XService", "callSync", [command]);
+    }
+    /*消息免打扰的回调函数*/
+    function _ignoreFn(args) {
+        console.log(args);
+    }
+    /*消息置顶*/
+    function stickMessage(ele, isTop) {
+        if (ele.hasClass('chat-item')) {
+            var command = {
+                "method": "YYIM.setStickTop",
+                "params": {
+                    "chatID": ele.attr('data-id'),
+                    "isTop": isTop,
+                    "type": ele.attr('data-type'),
+                    "callback": "_stickFn()"
+                }
+            }
+        } else {
+            var command = {
+                "method": "YYIM.setStickTop",
+                "params": {
+                    "accountID": ele.attr('data-id'),
+                    "isTop": isTop,
+                    "callback": "_stickFn()"
+                }
+            }
+        }
+
+        cordova.exec(null, null, "XService", "callSync", [command]);
+
+    }
+    /*消息置顶的回调函数*/
+    function _stickFn(args) {
+        console.log(args);
+    }
+    
+    //打开消息时未读数量变化
+    function watchReadNum(obj) {
+        var $badge = $(obj).find('.um-badge');
+        var num = $badge.text() ? parseInt($badge.text()) : 0;
+        unReadNum -= num;
+        isReading();
+        //该条未读消息为空
+        $badge.text('');
+        //通过ID找到数据修改newCount，allData保持同步
+        var id = $(obj).attr('data-id');
+        for (var i = 0; i < allData.length; i++) {
+            if (allData[i].type == 'chat' || allData[i].type == 'groupchat') {
+                if (allData[i].chat.chatID == id) {
+                    allData[i].newCount = 0;
+                    break;
+                }
+            } else {
+                if (allData[i].account.accountID == id) {
+                    allData[i].newCount = 0;
+                    break;
+                }
+            }
+
+        }
+    }
+    //打开聊天方法
+    function openChat(obj) {
+
+        //打开聊天界面时，未读消息数量变化
+        watchReadNum(obj);
+        var id = $(obj).attr('data-id');
+        var type = $(obj).attr('data-type');
+
+        var command = {
+            "method": "YYIM.chat",
+            "params": {
+                "chatID": id, // 从消息列表获取
+                "type": type
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [command]);
+    }
+    /*处理数据中没有名字的聊天*/
+    function handleData(data) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].type == 'chat' && !data[i].chat.userPhoto) {
+                data[i].chat.bgc = 'background-color:' + getColor(data[i].chat.userName) + ';';
+                data[i].chat.shortName = data[i].chat.userName ? data[i].chat.userName.slice(-2) : '';
+            } else if (data[i].type == 'groupchat') {
+                /*处理群组头像*/
+                var newItem=addGroupChatPhoto(data[i]);
+                data[i]=newItem;
+            }
+        }
+        return data;
+    }
+    /*处理群组头像*/
+    function addGroupChatPhoto(item) {
+        if (!item.members) {
+            return item;
+        }
+        for (var i = 0; i < item.members.length; i++) {
+            var member = item.members[i];
+            if(!member.photo && member.name){
+                item.members[i].bgc='background-color:' + getColor(member.name) + ';';
+            }
+
+        }
+        return item;
+    }
+    /**根据名字获取背景颜色
+     *
+     */
+    function getColor(name) {
+        var color = ['#eead10', '#f99a2b', '#f38134', '#6495ed', '#3ab1aa', '#0abfb5', '#06aae1', '#00bfff', '#96bc53', '#00ced1', '#89a8e0'];
+        var newName = encodeURI(name).replace(/%/g, "");
+        var lastName, hexadecimal, tenBinary;
+        //长度大于等于6位，取后六位
+        if (newName.length >= 6) {
+            lastName = newName.substr(lastName, 6);
+            hexadecimal = parseInt(lastName, 16);
+            //能转成数字
+            if (hexadecimal) {
+                tenBinary = hexadecimal % 10;
+                return color[tenBinary];
+            } else {
+                //不能转数字
+                return color[10];
+            }
+        } else {
+            return color[10]
+        }
+    }
+  
+
+    //获取未读消息的总数
+    function getUnReadNum(data) {
+        unReadNum = 0;
+        $.each(data, function (index, item) {
+            unReadNum += Number(item.newCount);
+        });
+        setTimeout("isReading()", 300);
+    }
+    /*初始化页面*/
+    function init() {
+        //获取
+        var command = {
+            "method": "YYIM.fetchMessages",
+            "params": {
+                "callback": "renderData()"
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [command]);
+
+    }
+    //监听实时推送
+    function getNewInfo() {
+        var command2 = {
+            "method": "YYIM.registerMessageObserver",
+            "params": {
+                "callback": "receiveMessage()" // 收到消息时候回调
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [command2]);
+    }
+    function receiveMessage(args) {
+        var sourceData = JSON.parse(args.result);
+        /*返回的解散群组的消息*/
+        if (sourceData.action == 'dissolveGroup') {
+            summer.refreshHeaderBegin();
+            return;
+        }
+        /*有消息接收去除背景图*/
+        $('.um-content .empty').addClass('none');
+        //判断是否有相同聊天
+        var isSameChat = false;
+        //判断是否有相同类型的消息
+        var isSameMessage = false
+        //记录查询到第几个chat；
+        var chatCount = 0
+        //记录查询到第几个message；
+        var messageCount = 0;
+
+        /*数据经过处理*/
+        var message = handleData([sourceData])[0];
+        //未读消息变化
+        unReadNum += message.newCount;
+        isReading();
+        for (var j = 0; j < allData.length; j++) {
+            if (allData[j].type == 'chat' || allData[j].type == 'groupchat') {
+                chatCount++;
+                if (message.type == allData[j].type && message.chat.chatID == allData[j].chat.chatID) {
+                    isSameChat = true;
+                    break;
+                }
+            } else {
+                messageCount++;
+                if (message.type == allData[j].type && message.account.accountID == allData[j].account.accountID) {
+                    isSameMessage = true;
+                    break;
+                }
+            }
+        }
+        if (message.type == 'chat' || message.type == 'groupchat') {
+            if (isSameChat) {
+                //返回的信息newCount=0，为从聊天页面返回消息页
+                if (message.newCount == 0) {
+                    unReadNum -= allData[j].newCount;
+                    isReading();
+                    //修改allData的值保持同步
+                    allData[j].newCount = 0;
+                }
+                else {
+                    message.newCount += Number(allData[j].newCount);
+                }
+                //监听信息的未读数改为原来+1
+                //message.newCount = newCount;
+                allData.splice(j, 1);
+                createSingleItem(message);
+                //删去相同的列表项
+                $('.um-listview-row.chat-item').eq(chatCount).remove();
+            } else {
+                createSingleItem(message);
+            }
+        } else {
+            //新增消息项
+            if (isSameMessage) {
+                var newCount = Number(allData[j].newCount) + message.newCount;
+                //监听信息的未读数改为原来+1
+                message.newCount = newCount;
+                allData.splice(j, 1);
+                createSingleItem(message);
+                //删去相同的列表项
+                $('.um-listview-row.account-item').eq(messageCount).remove();
+            } else {
+                createSingleItem(message);
+            }
+        }
+    }
+
+    /*置顶的列*/
+    /*放置于列表的首位*/
+    function createStickItem(message) {
+        allData.unshift(message);
+        var singleData = [message];
+        var singleText = doT.template($("#msgTmlp").text());
+        $("#listview .um-list").prepend(singleText(singleData));
+    }
+    /*非置顶的列*/
+    /*放置于非置顶列的首位*/
+    function createNoStickItem(message, j) {
+        var stickCount = getStickItemCount();
+        /*放于非置顶区首位*/
+        allData.splice(stickCount, 0, message);
+        var singleData = [message];
+        var singleText = doT.template($("#msgTmlp").text());
+        if ($('#listview').find('.item-stick:last').length > 0) {
+            /*如果存在置顶列*/
+            $('#listview').find('.item-stick:last').after(singleText(singleData))
+        } else {
+            /*不存在置顶列，放于首位*/
+            $("#listview .um-list").prepend(singleText(singleData));
+        }
+
+    }
+    /*获取置顶数量*/
+    function getStickItemCount() {
+        var stickCount = 0;
+        $.each(allData, function (index, value) {
+            if (value.isTop == 'true') {
+                stickCount++;
+            }
+        });
+        return stickCount;
+    }
+    /*创建单个消息列表*/
+    function createSingleItem(message) {
+        if (message.isTop == 'true') {
+            createStickItem(message);
+        } else {
+            createNoStickItem(message);
+        }
+    }
+
+    /*通知后台消息已读*/
+    function yidu(id) {
+        var command = {
+            "method": "YYIM.updateMessageReaded",
+            "params": {
+                "accountID": id // 获取的消息.account.accountID
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [command]);
+    }
+    /*打开公告界面*/
+    function openAccount(obj) {
+        //检测打开未读消息时未读消息总数变化
+        watchReadNum(obj);
+        var num = null;
+        var id = $(obj).attr("data-id");
+        yidu(id);
+        summer.openWin({
+            id: 'MessageContentWin',
+            url: 'Honour/MessageContentWin.html',
+            pageParam: {
+                accountID: id
+            }
+        });
+
+    }
+
+    
+
+
+    //判断返回的数据是语言、图片、还是文字
+    function judgeType(type) {
+        var returntext = type;
+
+
+        try {
+            returntext = JSON.parse(type);
+            if (returntext.type == 'amr' || returntext.type == 'mp4' || returntext.type == 'mp3') {
+                return "(语音信息)"
+            } else if (returntext.type == 'png' || returntext.type == 'jpg' || returntext.type == 'jpeg' || returntext.type == 'gif') {
+                return "(图片信息)"
+            } else {
+                if (isNaN(returntext)) {
+                    return "(其他信息)"
+                }
+                return returntext
+            }
+        }
+        catch (err) {
+            return returntext;
+        }
+
+        /*return  returntext;*/
+
+    }
+
+
+    //验证是否还有未读消息
+    function isReading() {
+        /*summer.execScript({
+         winId:'root',
+         script: 'pub_showRed(' + unReadNum + ')'
+         });*/
+        return;
+    }
+
+</script>
+</html>

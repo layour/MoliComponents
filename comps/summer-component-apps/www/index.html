@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/runtime.css">
+		<link rel="stylesheet" href="./css/fonticon.css" />
+		<link rel="stylesheet" href="./css/grid.css">
+	</head>
+	<body style="background: #f3f3f3">
+	    <div class="banner">
+	    	<img src="./image/ban1.jpg" alt="" />
+	    </div>	
+        <div class="choice-item" id="choice-item">
+			<div id="Page3_GridView1" class="GridView" :style="ContactData.style" :data-type="ContactData.type">
+				<div class="grid-container">
+					<div class="grid-row">
+						<div class="grid-col" :class="comstyle" :style ="comwidth"  v-for="list in ContactData.gridData">
+							<a href="#Page2">
+								<div class="grid-wrapper">
+									<div class="grid-icon-block" :style = "{background:list.bgcolor,color:list.color}">
+										<span class="icon-warp" :class="list.icon" aria-hidden="true"></span>
+									</div>
+									<div style="color:gray;line-height: 13px;font-size:13px;">{{list.text}}</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+         </div>
+	</body>
+	<script src="../../../js/summer.js" ></script>
+	<script src="./js/vue.min.js"></script>
+	<script src="./data/application.js"></script>
+	<script>
+		var example = new Vue({
+		  el: '#choice-item',
+		  data: {
+		  	ContactData : ContactData
+		  	
+		  },
+		  computed: {
+		  	comstyle : function(){
+		  		if(!this.ContactData.isSeparationLine){
+		  			return "gird" + this.ContactData.cols
+		  		}else{
+		  			return "gird" + this.ContactData.cols + " " + "separationline"
+		  		}
+		  	},
+		  	comwidth : function(){
+		  		return {
+		  		    width: 100/this.ContactData.cols + "%" ,
+		  		}
+		  	}
+		  }
+		});
+		
+		summerready = function(){
+		
+		};
+	</script>
+</html>

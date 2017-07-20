@@ -1,0 +1,76 @@
+.banner img{
+	width: 100%;
+}
+.grid-row {
+  width: 100%;
+  overflow:hidden;
+  min-height: 33px;
+}
+
+.GridView {
+  overflow-x: hidden;
+}
+.grid-list-wrapper .del {
+  display: none !important;
+}
+.grid-wrapper {
+  padding: 9px 0;
+  text-align: center;
+}
+.grid-icon-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 22px;
+  margin: 0px auto;
+  margin-bottom : 9px;
+}
+.grid-col {
+  float:left;
+  vertical-align: middle;
+  text-align: center;
+  
+}
+.grid-col.separationline{
+	border-right:1px solid rgb(238, 238, 238);
+  border-bottom:1px solid rgb(238, 238, 238);
+}
+.grid-col:active {
+  background-color: #efefef;
+}
+.gird3.separationline:nth-child(3n){
+	border-right:none;
+}
+.gird4.separationline:nth-child(4n){
+	border-right:none;
+}
+.gird5.separationline:nth-child(5n){
+	border-right:none;
+}
+.gird3 .grid-icon-block{
+	width: 50px;
+	height: 50px;
+	font-size: 24px;
+}
+.gird4 .grid-icon-block{
+	width: 44px;
+	height: 44px;
+	font-size: 20px;
+}
+.gird5 .grid-icon-block{
+	width: 40px;
+	height: 40px;
+	font-size: 18px;
+}
