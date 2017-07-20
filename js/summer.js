@@ -344,13 +344,23 @@
     w.api = w.summer;
     (function(){
 		try{
-			if($summer.os =="pc" && document.location.href.toLocaleString().indexOf("http")<0){
+			var summerDOMContentLoaded = function(){
 				document.addEventListener('DOMContentLoaded',function(){
+					summer.trigger("init");
+					summer.pageParam = window.localStorage;
 					if(typeof summerready == "function")
 						summerready();
 					if(typeof summerReady == "function")
-						summerReady();  
+						summerReady();
+					summer.trigger("ready");
+					summer.trigger("aftershowwin");
 				},false);
+			}
+				
+			if($summer.os =="pc" && document.location.href.toLocaleString().indexOf("http")<0){
+				summer.__debug = true;
+				console.log("run by file:// protocol in debug Mode");
+				summerDOMContentLoaded();
 			}else{
 				var url = "";
 				if(document.location.href.indexOf("http")===0){
@@ -380,7 +390,7 @@
 						url = document.location.pathname.split("www")[0]+"www/cordova.js";
 					}
 				}
-				//normal load
+				
 				var _script = document.createElement('script');
 				_script.id = "cordova_js";
 				_script.type = 'text/javascript';
@@ -394,7 +404,7 @@
 					document.addEventListener('deviceready', function(){
 						summer.trigger("init");//summer.on('init',function(){})
 						
-						//1、先通过cdv来获取页面参数
+						//1、先获取页面参数123
 						summer.winParam(function(ret){
 							//希望返回
 							var ctx = {
@@ -437,6 +447,11 @@
 						});         
 					}, false);
 
+				};
+				_script.onerror = function (e) {
+					summer.__debug = true;
+					console.log("run by http:// protocol in debug Mode");
+					summerDOMContentLoaded();
 				};
 				//document.currentScript.parentNode.insertBefore(_script, document.currentScript);
 				fs = document.getElementsByTagName('script')[0];
@@ -1533,6 +1548,16 @@
 		return s.callCordova('summer-plugin-core.XUpgrade', 'exitApp', json || {}, successFn, errFn);
 	};
 	
+	s.collectInfos = function(json){
+		var APMPARAMS = ["login", json];
+		cordova.require("summer-plugin-apm.SummerAPM").insertAction(APMPARAMS,function(args){},function(args){});
+	};
+	//安卓手动获取权限
+	s.getPermission = function(json, successFn, errFn){
+		if($summer.os=='android'){
+        	return s.callCordova('summer-plugin-service.XService', 'getPermission', json, successFn, errFn);
+    	}
+    }
 }(window,summer);
 
 
@@ -1953,6 +1978,9 @@
 		remove : function(args){
 			return s.callService("UMFile.remove", args, false);//默认异步
 		},
+		compressImage : function(args){
+			return s.callService("UMFile.compressImg", args, false);//默认异步
+		},
 		exists : function(args){
 			return s.callService("UMFile.exists", args, true);
 		},
@@ -2271,6 +2299,7 @@
 	s.getLocationInfo = s.UMDevice.getLocationInfo;
 	//
 	s.removeFile = s.UMFile.remove;
+	s.compressImage=s.UMFile.compressImage
  	s.exists = s.UMFile.exists;
  	s.download = s.UMFile.download;
  	s.openFile = s.UMFile.open;
@@ -2472,6 +2501,7 @@
      e.installWebApp = function(json,successFn,errFn){
         json["callback"]=successFn;
         json["error"]=errFn;
+		 json["__keepCallback"] = true;
         return  s.callService('UMEMMService.installWebApp', json, false);
     };
      e.openWebApp = function(json,successFn,errFn){
