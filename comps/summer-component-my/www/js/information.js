@@ -141,7 +141,7 @@ function setimg(imgurl) {
 function goChangePage(obj, name) {
 	summer.openWin({
 		id : 'changePage',
-		url : 'summer-component-my/www/html/changePage.html',
+		url : 'comps/summer-component-my/www/html/changePage.html',
 		pageParam : {
 			attr : $(obj).find('.form-control').text(),
 			title : $(obj).find('.um-list-item-left').text(),
