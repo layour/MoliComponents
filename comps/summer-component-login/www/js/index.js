@@ -78,7 +78,8 @@ function demoLogin(){
     summer.openWin({
         type:'tabBar',
         id: 'root',
-        isKeep: false,
+        create: 'false',
+        isKeep: false
     })
 }
 function beforeLogin() {
