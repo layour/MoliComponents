@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "this is contact component.",
   "main": "index.html",
-  "dependencies": {
-    "cordova-plugin-wechat": "*",
-    "cordova-plugin-scancard": "1.0.0"
-  },
+  "dependencies": [],
   "author": "zhoulei"
 }
