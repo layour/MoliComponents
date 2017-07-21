@@ -77,7 +77,7 @@ function closeAPP(){
 	summer.openWin({
 		"id" : 'login',
 		"addBackListener":"true",
-		"url" : 'summer-component-my/www/html/login.html',
+		"url" : 'comps/summer-component-login/www/html/index.html',
 		"isKeep" : false
 	});
 }

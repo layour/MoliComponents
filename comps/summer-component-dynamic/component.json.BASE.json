@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "this is robot component.",
   "main": "index.html",
+  "dependencies": {
+    "cordova-plugin-ifly-speech": "*"
+  },
   "author": "zhoulei"
 }

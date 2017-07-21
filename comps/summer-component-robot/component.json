@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "this is robot component.",
   "main": "index.html",
-  "dependencies": {
-    "cordova-plugin-ifly-speech": "*"
-  },
+  "dependencies":[
+  	{
+  	"name": "cordova-plugin-ifly-speech",
+    "version": "*",
+    "params": ["SPEECH_KEY_ANDROID=appid=58eb438d", "SPEECH_KEY_IOS=58ec8b49"]
+    }
+  ],  
   "author": "zhoulei"
 }

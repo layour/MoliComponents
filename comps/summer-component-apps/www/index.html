@@ -16,13 +16,13 @@
 			<div id="Page3_GridView1" class="GridView" :style="ContactData.style" :data-type="ContactData.type">
 				<div class="grid-container">
 					<div class="grid-row">
-						<div class="grid-col" :class="comstyle" :style ="comwidth"  v-for="list in ContactData.gridData">
+						<div class="grid-col" @click = "clickApp(index,list)" :class="comstyle" :style ="comwidth"  v-for="(list, index) of ContactData.apps">
 							<a href="#Page2">
 								<div class="grid-wrapper">
-									<div class="grid-icon-block" :style = "{background:list.bgcolor,color:list.color}">
-										<span class="icon-warp" :class="list.icon" aria-hidden="true"></span>
+									<div class="grid-icon-block">
+										<img :src="list.iconURL" alt="" />
 									</div>
-									<div style="color:gray;line-height: 13px;font-size:13px;">{{list.text}}</div>
+									<div style="color:gray;line-height: 13px;font-size:13px;">{{list.appname}}</div>
 								</div>
 							</a>
 						</div>
@@ -35,30 +35,141 @@
 	<script src="./js/vue.min.js"></script>
 	<script src="./data/application.js"></script>
 	<script>
-		var example = new Vue({
-		  el: '#choice-item',
-		  data: {
-		  	ContactData : ContactData
-		  	
-		  },
-		  computed: {
-		  	comstyle : function(){
-		  		if(!this.ContactData.isSeparationLine){
-		  			return "gird" + this.ContactData.cols
-		  		}else{
-		  			return "gird" + this.ContactData.cols + " " + "separationline"
-		  		}
-		  	},
-		  	comwidth : function(){
-		  		return {
-		  		    width: 100/this.ContactData.cols + "%" ,
-		  		}
-		  	}
-		  }
-		});
-		
+
 		summerready = function(){
-		
+			new Vue({
+			    el: '#choice-item',
+			    data: {
+			  		ContactData : {},
+			  		selectIndex: 0,
+			  		selectList : {}
+			    },
+			    computed: {
+			  		comstyle : function(){
+			  			if(!this.ContactData.isSeparationLine){
+				  			return "gird" + this.ContactData.cols
+				  		}else{
+				  			return "gird" + this.ContactData.cols + " " + "separationline"
+				  		}
+			  		},
+				  	comwidth : function(){
+				  		return {
+				  		    width: 100/this.ContactData.cols + "%" ,
+				  		}
+				  	}
+			    },
+			    mounted : function(){
+			    	window._config = this;
+	            	var userinfo = summer.getStorage('userinfo');
+	            	// 获取常用应用
+				    emm.getUserCommonApps(
+				    	{
+					        "userid": "",
+					        "companyId":'test',
+							"categoryname":'常用应用'
+						},
+						"sysAppsS()",
+						"sysAppE()"
+					);
+	        	},
+	        	methods: {
+	        		setData:function(res){
+	        			var data = $summer.strToJson(res.result).data.appdata;
+	        			data.id = "Page3_GridView1";
+	        			data.type = "appsComponent";
+	        			data.cols = 3;
+	        			data.isSeparationLine = true;
+	        			this.ContactData = data;
+	        		},
+	        		clickApp : function(index,obj){
+	        			// 将当前的index存储起来。方便下边调用
+	        			this.selectIndex = index;
+	        			this.selectList = obj;
+	        			// 获取当前选中的值
+	        			var appid = obj.appid;
+	        			var isInstall = obj.installed;
+						var isupdate = obj.isupdate;
+						var version = obj.version;
+						var downloadURL = obj.downloadURL;
+						var homepage = obj.homepage;
+						if (isInstall == 'true') {
+							if(isupdate == 'true'){
+								this.upgrade(appid,version,downloadURL);
+							}else{
+								this.openApp(appid,homepage);
+							}
+				
+						}else {
+							this.appInstall(appid,version,downloadURL);
+						}
+	        		},
+	        		upgrade : function(appid,version,downloadURL){
+	        			emm.upgradeWebApp({
+							"appid":appid,
+							"version":version,
+							"downloadURL":downloadURL,
+						},"upgradeS()","upgradeE()")
+	        		},
+	        		openApp : function(appid,homepage){
+	        			emm.openWebApp({
+							"appid": appid,
+							"homepage":homepage,
+							"params": {}
+						}, "openS()", "openE()")
+	        		},
+	        		appInstall : function(appid,version,downloadURL){
+	        			emm.installWebApp({
+							"appid": appid,
+							"version":version,
+							"downloadURL":downloadURL,
+						}, "installS()", "instllE()");
+	        		}
+	        	},
+			});
 		};
+		
+		/*  下边为调用emm方法以后的成功和失败回调， 因为原生读取的都是window级别的JS  所以只能放到全局中   ?    */
+		//  获取列表成功和失败的回调
+		function sysAppsS(res){
+			_config.setData(res);
+		}
+		function sysAppE(res){
+		    alert('获取系统app列表失败！！！');
+		}
+		
+		
+		/*安装成功与失败*/
+		function installS(ret) {
+			if (ret.isfinish == 1) {
+				_config.selectList.installed = 'true';
+				Vue.set(_config.ContactData.apps, _config.selectIndex, _config.selectList);
+				summer.toast({msg:'安装完成'})
+			}
+		}
+		function instllE(res) {		
+			$summer.alert(res);
+		}
+		
+		
+		/*升级应用成功与失败*/
+		function upgradeS(ret){
+			if (ret.isfinish == 1) {
+				_config.selectList.isupdate = 'false';
+				Vue.set(_config.ContactData.apps, _config.selectIndex, _config.selectList);
+				summer.toast({msg:'升级完成'})
+			} 
+		}
+		function upgradeE(res){
+			$summer.alert(res);
+		}
+		
+		
+		/*打开应用成功与失败*/
+		function openS(ret) {
+			
+		}
+		function openE(res) {
+			$summer.alert(res);
+		}
 	</script>
 </html>

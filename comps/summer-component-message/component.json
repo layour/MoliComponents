@@ -1,10 +1,12 @@
 {
-  "name": "summer-component-robot",
+  "name": "summer-component-message",
   "version": "1.0.0",
-  "description": "this is robot component.",
+  "description": "this is message component.",
   "main": "index.html",
-  "dependencies": {
-    "cordova-plugin-ifly-speech": "*"
-  },
+  "dependencies": [{
+    "name": "cordova-plugin-honorim",
+    "version": "*",
+    "params": ["APP_ID=moli", "ETP_ID=iuap_moli", "CLIENT_ID=06fa63f9eac2de8329dfe146db143f0a", "CLIENT_SECRET=874418578B81D56B8D78F4BC7248AE40", "CER_NAME=mobile_res"]
+  }],
   "author": "zhoulei"
 }
