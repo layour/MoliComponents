@@ -79,7 +79,7 @@ function quitIm() {
 function openWin(type) {
 	summer.openWin({
 		"id" : type,
-		"url" : 'comps/summer-component-my/www/html' + type + '.html',
+		"url" : 'comps/summer-component-my/www/html/' + type + '.html',
 	});
 }
 

@@ -3,6 +3,44 @@
 html, body {
 	background: #ffffff;
 }
+/*# sourceMappingURL=iuapmobile.um.css.map */
+/*关于border处理方案*/
+@media (-webkit-min-device-pixel-ratio: 2){
+  .border:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    bottom: -100%;
+    left: 0;
+    border: 0 solid #D4D4D4;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    width: 200%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+   }
+ }
+/*头像*/
+.i-box{
+ 	 width:1.5rem;
+	 height:1.5rem;  
+	 line-height:1.5rem;
+	position:absolute;
+	left:50%;
+	top:1.2rem;
+	transform:translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	border-radius:50%;
+	box-shadow:0 0 0 0.05rem #fff; 
+	font-family:"微软雅黑";
+	font-size:0.42rem;
+	color:#fff;
+}
 body {
 	font-size: 0.3 rem;
 	position: absolute;

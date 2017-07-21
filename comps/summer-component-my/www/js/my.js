@@ -14,7 +14,7 @@ function getData() {
 	userinfo = summer.getStorage('userinfo');
 	version=JSON.parse(summer.getAppVersion());
 	if (userinfo.userAvator) {
-		document.getElementById('headImg').setAttribute('src', userinfo.userAvator);
+		document.getElementById('headImg').setAttribute('src', userinfo.avatar);
 	} else {
 		document.getElementById('headImg').setAttribute('src', '../../img/user.png');
 	}

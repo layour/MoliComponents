@@ -130,3 +130,57 @@ input[type="search"] {
 .border:after{
 	border-bottom:1px solid #e4e4e4;
 }
+.addressList li{
+	margin-left:0.5rem;
+	margin-right:0.24rem;
+	padding-left:0.1rem;
+	line-height:1.1rem;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    
+}
+.addressList li p{
+	padding-left:0.2rem;
+	-webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    color: (r:0.28 g:0.33 b:0.35 a:1.00);
+    font-size:0.32rem;
+}
+.addressList li img{
+	vertical-align:middle;
+	width:0.8rem;
+	height:0.8rem;
+	
+}
+.addressList li:active{
+	/* background-color: #eee; */
+	transform:scale(0.98)
+}
+/*# sourceMappingURL=iuapmobile.um.css.map */
+/*关于border处理方案*/
+@media (-webkit-min-device-pixel-ratio: 2){
+  .border:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    bottom: -100%;
+    left: 0;
+    border: 0 solid #D4D4D4;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    width: 200%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+   }
+ }
+
+
+.addressList li:after{border-bottom: 1px solid rgba(237,237,237,1)}
