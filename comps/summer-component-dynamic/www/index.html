@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>CulturalCircle/CulturalCircle</title>
+    <link rel="stylesheet" href="css/iuapmobile.um.css"/>
+    <link rel="stylesheet" href="css/iconfont.css"/>
+    <link href="css/CulturalCircle.css" rel="stylesheet"></head>
+<body>
+<div id="app"></div>
+<script src="js/react.min.js"></script>
+<script src="js/react-dom.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/summer.js"></script>
+<script src="js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+<script src="js/font.js"></script>
+<script>
+  /*评论成功后执行的方法*/
+    function pub_commentS(item){
+        _CulturalCircle.sendComment(item);
+    }
+    /*tab切换的方法*/
+    function pub_tabClick(type){
+        _CulturalCircle.tabChange(type);
+    }
+     function pub_addDynamic(type){
+         _CulturalCircle.addDynamic(type);
+   }
+    function refreshHeader(){
+        summer.refreshHeaderBegin();
+    }
+
+</script>
+<script type="text/javascript" src="js/vendors.js"></script>
+<script type="text/javascript" src="js/CulturalCircle.js"></script>
+</body>
+</html>

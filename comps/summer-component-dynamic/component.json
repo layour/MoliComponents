@@ -1,10 +1,10 @@
 {
-  "name": "summer-component-robot",
+  "name": "summer-component-dynamic",
   "version": "1.0.0",
-  "description": "this is robot component.",
+  "description": "this is dynamic circle.",
   "main": "index.html",
   "dependencies": {
     "cordova-plugin-ifly-speech": "*"
   },
-  "author": "zhoulei"
+  "author": "wuxlr"
 }
