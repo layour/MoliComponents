@@ -62,11 +62,11 @@
 			    	window._config = this;
 	            	var userinfo = summer.getStorage('userinfo');
 	            	// 获取常用应用
-				    emm.getUserCommonApps(
+				    emm.getRecommendedApps(
 				    	{
-					        "userid": "",
+					        "userid": "guest",
 					        "companyId":'moli',
-							"categoryname":'常用应用'
+							"categoryname":'首页应用'
 						},
 						"sysAppsS()",
 						"sysAppE()"

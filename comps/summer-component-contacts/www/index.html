@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/department.css">	
 	</head>
 	<body>
-		<div id="wrap" class="um-win">
+		<div id="wrap" class="um-frame">
 			<!-- <div class="um-header"   id="header">
 				<a href="#"  class="um-back" onclick="summer.closeWin();">&nbsp;</a>
 				<h3 id="title">通讯录</h3>
@@ -34,6 +34,9 @@
 							</p>
 						</div>
 					</div>
+					<div class="addressList">
+					
+					</div>
 					
 			</div>
 		</div>
@@ -43,5 +46,124 @@
 	<script type="text/javascript" src="js/public/font.js"></script>
 	<script type="text/javascript" src="js/public/summerCommon.js"></script>
 	<script type="text/javascript" src="js/public/doT.min.js"></script>
-	<script type="text/javascript" src="js/department.js"></script>
+	<!-- <script type="text/javascript" src="js/department.js"></script> -->
+	<script id="domTemp" type="text/x-dot-template">
+	<ul>
+		{{for(var i=0;i<it.length;i++){ }}
+			<li onclick="openWin('{{=it[i].yhtId}}')" class="border" data-userid=""  >
+		<!-- 	<div><img src="{{=it[i].avatar}}" alt="" /> -->
+		    <div class=" tc" id="headImg"><img src="image/contacts/m-a.png" alt="" />
+			</div>
+			<p>{{=it[i].userName}}</p>
+			</li>
+		{{}}}
+	</ul>
+</script>
+<script>
+ var _pageNum=1;  
+summerready = function(){
+	//$summer.fixStatusBar($summer.byId('header'));
+	getData(1,false);
+	 summer.window.setRefreshHeaderInfo({
+                visible: true,
+                bgColor: '#ffffff',
+                textColor: '#4d4d4d',
+                textDown: '下拉刷新...',
+                textUp: '松开刷新...',                                                                                                                                                                                     textDo : '正在刷新数据...',                                                                                                                                                                                     showTime: true
+    }, function (ret, err) {
+                //从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+               getData(1,true);
+               _pageNum=1; 
+			  summer.refreshFooterLoadDone();
+ 	});
+ 	    /*上拉加载*/
+    summer.setRefreshFooterInfo({
+        visible: true,
+        bgColor: '#ffffff',
+        textColor: '#4d4d4d',
+        textDown: '上拉加载更多...',
+        textUp: '松开刷新...',
+        showTime: true,
+    }, function (ret, err) {
+    		_pageNum++;
+        	 getData(_pageNum,false);
+            summer.refreshFooterLoadDone();
+    })
+	 
+};
+function openWin(type){
+	summer.openWin({
+		id : "employee",
+		url : "comps/summer-component-contacts/www/html/employee.html",
+		statusBarStyle:"light",
+		pageParam :{
+			id:type,
+		}
+	});
+};
+function getData(listCount,flag){
+var param={
+	 pageNum:10,
+	 hasSelf:listCount 
+}
+	ajaxRequest({
+        type: 'post',
+        url: '/userlink/getMyCorpUser',
+        param: param
+    }, function (res) {
+          if (!flag) {
+                
+                renderList(res.data.content)
+                if(_pageNum>1){
+                    summer.refreshFooterLoadDone();
+                }
+                if(_pageNum>res.data.totalPages){
+                	summer.toast({
+                		msg:"没有更多数据了"
+                	});
+                }
+
+            } else {
+                /*刷新以后_pageNum值回复成1*/
+                _pageNum=1;
+                renderFresh(res.data.content);
+                summer.refreshHeaderLoadDone();
+            }
+    }, function (err) {
+        alert("获取失败"+JSON.stringify(err));
+    })
+};
+/*渲染列表*/
+function renderList(data) {
+   var dataText = doT.template($("#domTemp").text());
+		$(".addressList").append(dataText(data));
+
+}
+/*刷新替换原有列表*/
+function renderFresh(data) {
+       var dataText = doT.template($("#domTemp").text());
+		$(".addressList").html(dataText(data));
+}
+function getColor(name) {
+	var color = ['#eead10', '#f99a2b', '#f38134', '#6495ed', '#3ab1aa', '#0abfb5', '#06aae1', '#00bfff', '#96bc53', '#00ced1', '#89a8e0'];
+	var newName = encodeURI(name).replace(/%/g, "");
+	var lastName,
+	    hexadecimal,
+	    tenBinary;
+	if (newName.length >= 6) {
+		lastName = newName.substr(lastName, 6);
+		hexadecimal = parseInt(lastName, 16);
+		tenBinary = hexadecimal % 10;
+		return color[tenBinary];
+	} else {
+		return color[10]
+	}
+}
+function opensearch(){
+	summer.openWin({
+		id : "search",
+		url : "comps/summer-component-contacts/www/html/search.html"
+	});
+}
+</script>
 </html>
