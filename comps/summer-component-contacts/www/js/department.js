@@ -54,7 +54,7 @@ function trimStr(str) {
         param: param
     }, function (res) {
         if (res.flag == 0) {
-            alert('登录成功')
+           // alert('登录成功')
             var userinfo = {
                 id: res.data.id,
                 yhtId: res.data.yhtId,

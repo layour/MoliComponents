@@ -40,7 +40,7 @@
 		{{for(var i=0;i<it.length;i++){ }}
 			<li onclick="openWin('{{=it[i].yhtId}}')" class="border" data-userid=""  >
 		<!-- 	<div><img src="{{=it[i].avatar}}" alt="" /> -->
-		    <div class="i-box tc" id="headImg"><img src="../image/contacts/m-a.png" alt="" />
+		    <div class=" tc" id="headImg"><img src="../image/contacts/m-a.png" alt="" />
 			</div>
 			<p>{{=it[i].userName}}</p>
 			</li>
@@ -109,6 +109,11 @@ var param={
                 renderList(res.data.content)
                 if(_pageNum>1){
                     summer.refreshFooterLoadDone();
+                }
+                if(_pageNum>res.data.totalPages){
+                	summer.toast({
+                		msg:"没有更多数据了"
+                	});
                 }
 
             } else {
