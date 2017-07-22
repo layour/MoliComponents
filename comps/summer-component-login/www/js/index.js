@@ -35,6 +35,7 @@ var realLogin = function () {
         userName: trimStr(accountContent),
         password: trimStr(passwordContent),
     }
+    summer.showProgress()
     ajaxRequest({
         type: 'post',
         url: '/auth/login',
@@ -56,10 +57,12 @@ var realLogin = function () {
             summer.toast({
                 msg: '登录成功'
             })
+            summer.hideProgress();
             summer.openWin({
                 type: 'tabBar',
                 id: 'root',
-                isKeep: false,
+                create: 'false',
+                isKeep: false
             })
 
         } else {

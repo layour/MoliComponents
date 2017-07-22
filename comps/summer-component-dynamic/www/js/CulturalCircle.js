@@ -18698,37 +18698,38 @@ var CulturalCircle = function (_Component) {
 
         _this.getPageInit = function () {
             var self = _this;
-            var param = {
-                userName: '18210773633',
-                password: '123456'
-            };
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_api_ajax_js__["a" /* ajax */])({
-                type: 'post',
-                url: '/auth/login',
-                param: param
-            }, function (res) {
-                console.log(res);
-                if (res.flag == 0) {
-                    var userinfo = {
-                        id: res.data.id,
-                        yhtId: res.data.yhtId,
-                        token: res.data.token,
-                        account: res.data.mobile ? res.data.mobile : res.data.email,
-                        userName: res.data.userName ? res.data.userName : '',
-                        avatar: res.data.avatar ? res.data.avatar : '',
-                        name: res.data.name ? res.data.name : ''
-                    };
-                    summer.setStorage('userinfo', userinfo);
-                    summer.toast({ msg: '登录成功' });
-                    self.getData('header', 1, false);
-                } else {
-                    var message = res.msg ? res.msg : '登录失败';
-                    summer.toast({ msg: message });
-                }
-            }, function (err) {
-                var message = err.error ? err.error : '登录失败';
-                summer.toast({ msg: message });
-            });
+            /* var param={
+                 userName:'18210773633',
+                 password:'123456',
+             }
+             ajax({
+                 type: 'post',
+                 url: '/auth/login',
+                 param: param
+             }, function (res) {
+                 console.log(res);
+                 if(res.flag==0 ){
+                     let userinfo={
+                         id:res.data.id,
+                         yhtId:res.data.yhtId,
+                         token:res.data.token,
+                         account:res.data.mobile ? res.data.mobile : res.data.email,
+                         userName:res.data.userName ? res.data.userName : '',
+                         avatar:res.data.avatar ? res.data.avatar : '',
+                         name:res.data.name ? res.data.name :''
+                     }
+                     summer.setStorage('userinfo',userinfo);
+                     summer.toast({msg:'登录成功'})
+                     self.getData('header', 1, false);
+                 }else {
+                     let message= res.msg ? res.msg : '登录失败';
+                     summer.toast({msg:message})
+                 }
+             }, function (err) {
+                 let message= err.error ? err.error : '登录失败';
+                 summer.toast({msg:message})
+             })*/
+            _this.getData('header', 1, false);
             summer.setRefreshHeaderInfo({
                 visible: true,
                 bgColor: '#F6F6F6',
@@ -19099,19 +19100,6 @@ var CulturalCircle = function (_Component) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'um-win' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'culture um-header', id: 'culture-header' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'h3',
-                        null,
-                        '\u5708\u5B50'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'um-header-right iconfont icon-send_blog',
-                        onClick: function onClick(e) {
-                            _this3.createNewDynamic(e);
-                        } })
-                ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'um-content' },
