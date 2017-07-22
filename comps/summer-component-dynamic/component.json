@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "description": "this is dynamic circle.",
   "main": "index.html",
-  "dependencies": {
-    "cordova-plugin-ifly-speech": "*"
-  },
   "author": "wuxlr"
 }
