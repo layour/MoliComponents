@@ -5,14 +5,47 @@ var g_data;
 var _array=[];
 /*********************************** Summer Lifecycle Handler Define ***********************************/
 summerready = function(){
-	$('#header').css('padding-top','20px')
-	setTimeout(function (){	
-		summer.popupKeyboard();
+	$('#header').css('padding-top','10px')
+	 setTimeout(function (){	
+		//summer.popupKeyboard();
 		document.getElementById("search").focus();
 	}, 500);
-//	getCache();
-	bindEvents();
+	show();
 }
+function show(){
+	$(".search").on("input propertychange focus",total);
+};
+// 搜索
+var sch=null;
+function total(){
+	var length = $(this).val().length;
+	if(length>0){
+		sch=$(this).val();
+		console.log(sch);
+		var searchdata={
+		    "corpword":sch,
+			  pageNum:10,
+	          hasSelf:1 
+		}
+     	ajaxRequest({
+		        type: 'post',
+		        url: '/userlink/searchCorpUser',
+		        param: searchdata
+		    }, function (res) {
+		          var listtext=doT.template($("#listTemp").text());
+			$("#main").html(listtext(res.data.content));
+
+		    }, function (err) {
+		        alert("获取失败"+JSON.stringify(err));
+		    })
+	}	
+} 	
+
+
+
+
+
+
 
 
 /*********************************** Init Method Define ***********************************/
@@ -37,25 +70,7 @@ function getCache(){
     initData();	
 }
 
-function total(){
-	var _data=[];
-	var length=$(this).val().length;
-	if(length<1 && summer.getStorage('searcharr')){
-		var listText=doT.template($('#listTemp').text());
-		$('#main').html(listText(summer.getStorage('searcharr')));
-		$('#main').append('<div class="clearhis" onclick="clearhis()">清除历史记录</div>')	
-	}else if(length<1&& !summer.getStorage('searcharr')){
-		$("#main").html('<div class="empty"></div>');	
-	}else{
-		for(var k=0;k<_array.length;k++){
-			if(_array[k].name.indexOf($(this).val())>=0){			
-				_data.push(_array[k]);			
-			}
-		}	
-		var listText=doT.template($('#listTemp').text());
-		$('#main').html(listText(_data));	
-	}	
-}
+ 
 
 /*********************************** DOM Event Handler Define ***********************************/
 function bindEvents(){
@@ -103,4 +118,14 @@ function setLocal(obj){
 			tenantid:$(obj).attr("data-tenantid")
 	    }
 	});		
-}
+};
+function openWin(type){
+	summer.openWin({
+		id : "employee",
+		url : "comps/summer-component-contacts/www/html/employee.html",
+		statusBarStyle:"light",
+		pageParam :{
+			id:type,
+		}
+	});
+};

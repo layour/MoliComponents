@@ -39,75 +39,24 @@
 	<ul>
 		{{for(var i=0;i<it.length;i++){ }}
 			<li onclick="openWin('{{=it[i].yhtId}}')" class="border" data-userid=""  >
-			<div><img src="../image/contacts/m-a.png" alt="" />
+		<!-- 	<div><img src="{{=it[i].avatar}}" alt="" /> -->
+		    <div class=" tc" id="headImg"><img src="../image/contacts/m-a.png" alt="" />
 			</div>
-			<p>{{= it[i].userName}}</p>
+			<p>{{=it[i].userName}}</p>
 			</li>
 		{{}}}
 	</ul>
 </script>
 <script type="text/javascript" src="../js/public/jquery.min.js"></script>
-<script type="text/javascript" src="../../../../js/public/summer.js"></script>
+<script type="text/javascript" src="../../../../js/summer.js"></script>
 <script type="text/javascript" src="../js/public/font.js"></script>
 <script type="text/javascript" src="../js/public/doT.min.js"></script>
 <script type="text/javascript" src="../js/public/summerCommon.js"></script>
 <script>
-var testData=[
-		{
-			"avatar":"",
-			"email":"zhenglq@169.com",
-			"id":2,
-			"mobile":"",
-			"name":"",
-			"staffNo":"",
-			"userName":"王五",
-			"yhtId":"f23f7bf1-cab6-4791-b5ec-c666aca4d54c"
-		},
-		{
-			"avatar":"",
-			"email":"zhenglq@189.com",
-			"id":4,
-			"mobile":"",
-			"name":"",
-			"staffNo":"",
-			"userName":"赵强",
-			"yhtId":"4821d875-a783-4b29-9307-7c9dac984656"
-		},
-		{
-			"avatar":"",
-			"email":"zhenglq@yonyou.com",
-			"id":5,
-			"mobile":"13810876954",
-			"name":"",
-			"staffNo":"",
-			"userName":"张三",
-			"yhtId":"d3b87a3c-bdf5-4302-a7c3-cb669c1ad3e5"
-		},
-		{
-			"avatar":"",
-			"email":"zhenglq@yonyou.com",
-			"id":5,
-			"mobile":"13810876954",
-			"name":"",
-			"staffNo":"",
-			"userName":"周飞",
-			"yhtId":"d3b87a3c-bdf5-4302-a7c3-cb669c1ad3e5"
-		},
-		{
-			"avatar":"",
-			"email":"zhenglq@179.com",
-			"id":3,
-			"mobile":"",
-			"name":"",
-			"staffNo":"",
-			"userName":"徐静",
-			"yhtId":"0e745680-de74-4d8f-977c-5dc2c711cc09"
-		}
-	],
-   
+ var _pageNum=1;  
 summerready = function(){
 	//$summer.fixStatusBar($summer.byId('header'));
-	getData();
+	getData(1,false);
 	 summer.window.setRefreshHeaderInfo({
                 visible: true,
                 bgColor: '#ffffff',
@@ -116,7 +65,8 @@ summerready = function(){
                 textUp: '松开刷新...',                                                                                                                                                                                     textDo : '正在刷新数据...',                                                                                                                                                                                     showTime: true
     }, function (ret, err) {
                 //从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
-               getData();
+               getData(1,true);
+               _pageNum=1; 
 			  summer.refreshFooterLoadDone();
  	});
  	    /*上拉加载*/
@@ -128,7 +78,8 @@ summerready = function(){
         textUp: '松开刷新...',
         showTime: true,
     }, function (ret, err) {
-        	 
+    		_pageNum++;
+        	 getData(_pageNum,false);
             summer.refreshFooterLoadDone();
     })
 	 
@@ -143,21 +94,63 @@ function openWin(type){
 		}
 	});
 };
-function getData(){
+function getData(listCount,flag){
 var param={
 	 pageNum:10,
-	 hasSelf:1 
+	 hasSelf:listCount 
 }
 	ajaxRequest({
-        type: 'get',
+        type: 'post',
         url: '/userlink/getMyCorpUser',
         param: param
     }, function (res) {
-        var dataText = doT.template($("#domTemp").text());
-		$(".addressList").html(dataText(res.data.content));
+          if (!flag) {
+                
+                renderList(res.data.content)
+                if(_pageNum>1){
+                    summer.refreshFooterLoadDone();
+                }
+                if(_pageNum>res.data.totalPages){
+                	summer.toast({
+                		msg:"没有更多数据了"
+                	});
+                }
+
+            } else {
+                /*刷新以后_pageNum值回复成1*/
+                _pageNum=1;
+                renderFresh(res.data.content);
+                summer.refreshHeaderLoadDone();
+            }
     }, function (err) {
         alert("获取失败"+JSON.stringify(err));
     })
+};
+/*渲染列表*/
+function renderList(data) {
+   var dataText = doT.template($("#domTemp").text());
+		$(".addressList").append(dataText(data));
+
+}
+/*刷新替换原有列表*/
+function renderFresh(data) {
+       var dataText = doT.template($("#domTemp").text());
+		$(".addressList").html(dataText(data));
+}
+function getColor(name) {
+	var color = ['#eead10', '#f99a2b', '#f38134', '#6495ed', '#3ab1aa', '#0abfb5', '#06aae1', '#00bfff', '#96bc53', '#00ced1', '#89a8e0'];
+	var newName = encodeURI(name).replace(/%/g, "");
+	var lastName,
+	    hexadecimal,
+	    tenBinary;
+	if (newName.length >= 6) {
+		lastName = newName.substr(lastName, 6);
+		hexadecimal = parseInt(lastName, 16);
+		tenBinary = hexadecimal % 10;
+		return color[tenBinary];
+	} else {
+		return color[10]
+	}
 }
 </script>
 </html>

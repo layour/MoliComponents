@@ -8,10 +8,10 @@ summerready = function() {
 /*********************************** Init Method Define ***********************************/
 function init(){
 	var userinfo = summer.getStorage('userinfo');
-	if (userinfo.userAvator) {
-		document.querySelector(".um-circle").setAttribute('src', userinfo.userAvator);
+	if (userinfo.avator) {
+		document.querySelector(".um-circle").setAttribute('src', userinfo.avator);
 	} else {
-		document.querySelector(".um-circle").setAttribute('src', '../../img/user.png');
+		document.querySelector(".um-circle").setAttribute('src', '../img/user.png');
 	}
 }
 /*********************************** DOM Event Handler Define ***********************************/ 

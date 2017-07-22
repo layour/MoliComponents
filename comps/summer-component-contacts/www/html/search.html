@@ -12,14 +12,15 @@
   </head>
 <body>
 	<script id="listTemp" type="text/x-dot-template">
-        {{for (var i=0;i<it.length;i++){}}
-            <div class="list border" onclick="setLocal(this)" data-id="{{=it[i].id}}" data-userid="{{=it[i].userid}}" data-tenantid="{{=it[i].tenantid}}">
-                <dl >
-                    <dt><span></span><span>{{=it[i].name}}</span></dt>
-                    <dd>{{=it[i].groupname}}</dd>
-                </dl>
-            </div>
-        {{}}}
+            <ul>
+				{{for(var i=0;i<it.length;i++){ }}
+					<li onclick="openWin('{{=it[i].yhtId}}')" class="border"    >
+					<!-- <div><img src="{{= it[i].avatar}}" alt="" /> </div>-->
+					<div><img src="../image/contacts/m-a.png" alt="" /> </div>
+					<p>{{= it[i].userName}}</p>
+					</li>
+				{{}}}
+			</ul>
     </script>
     <div id="wrap" class="um-win">	
        <div class="bar bar-nav um-header" id="header">
@@ -29,10 +30,7 @@
         	</form>
         	<span onclick="closeWin();">取消</span>
         </div>	
-        <div id="main" class="um-content">
-        	<div>
-        		
-        	</div>
+        <div id="main" class="um-content addressList">
         <!-- 	
         	<div class="list border">
         		        	<dl>

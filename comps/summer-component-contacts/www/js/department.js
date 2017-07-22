@@ -5,7 +5,7 @@ var G__Cache_Duration = 100000;
 /*********************************** Summer Lifecycle Handler Define ***********************************/
 summerready = function(){
 //登录
-realLogin();
+//realLogin();
 	//$summer.fixStatusBar($summer.byId('header'));
 	//var dataText = doT.template($("#domTemp").text());
 	//$(".addressList").html(dataText(testData));
@@ -13,7 +13,7 @@ realLogin();
 	//getData();
 	summer.openFrame({
         "id" : "department_frame",
-        "url" : "summer-component-contacts/www/html/department_frame.html",
+        "url" : "comps/summer-component-contacts/www/html/department_frame.html",
         "position" : {
             "left" : 0,
             "right" : 0,
@@ -21,7 +21,23 @@ realLogin();
             "bottom" : 0
         }
     });	
+    
 };
+// 登录有信 IM
+function loginIm(){
+    var _userinfo = summer.getStorage("userinfo");
+        var userinfo = {
+            "usercode": _userinfo.yhtId,
+            "userName": _userinfo.userName,
+        }
+        var params = {
+            "method": "YYIM.login",
+            "params": {
+                "userinfo": userinfo
+            }
+        }
+        cordova.exec(null, null, "XService", "callSync", [params]);
+}
 function trimStr(str) {
     return str.replace(/(^\s*)|(\s*$)/g, "");
 }
@@ -38,7 +54,7 @@ function trimStr(str) {
         param: param
     }, function (res) {
         if (res.flag == 0) {
-            alert('登录成功')
+           // alert('登录成功')
             var userinfo = {
                 id: res.data.id,
                 yhtId: res.data.yhtId,
@@ -54,7 +70,8 @@ function trimStr(str) {
             summer.setStorage('userinfo', userinfo);
           //   summer.setStorage('account', account)
             summer.setAppStorage('userinfo', userinfo)
-            summer.toast({msg: '登录成功'})
+            summer.toast({msg: '登录成功'});
+            loginIm();
             /*summer.openWin({
                 id: 'root',
                 url: 'Index/Index.html',

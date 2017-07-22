@@ -13,10 +13,11 @@ function edit(obj) {
 function getData() {
 	userinfo = summer.getStorage('userinfo');
 	version=JSON.parse(summer.getAppVersion());
-	if (userinfo.userAvator) {
-		document.getElementById('headImg').setAttribute('src', userinfo.userAvator);
+	if (userinfo.avatar) {
+		//document.getElementById('headImg').setAttribute('src', userinfo.avatar);
+		document.getElementById('headImg').setAttribute('src', 'img/user.png');
 	} else {
-		document.getElementById('headImg').setAttribute('src', '../../img/user.png');
+		document.getElementById('headImg').setAttribute('src', 'img/user.png');
 	}
 	document.getElementsByClassName('name')[0].innerHTML = (userinfo.userName);
 	document.querySelector("#version span").innerHTML = version.versionName;

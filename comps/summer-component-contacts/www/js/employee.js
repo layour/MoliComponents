@@ -30,6 +30,8 @@ summerready = function() {
 		}
 	});	
 }*/
+//聊天唯一id
+var _yhtId;
 function getData(){
 	var userid = summer.pageParam.id;
 var param={
@@ -37,7 +39,7 @@ var param={
 	 pageNum:10
 }
 	ajaxRequest({
-        type: 'get',
+        type: 'post',
         url: '/userlink/getMyCorpUserByUserId',
         param: param
     }, function (res) {
@@ -46,7 +48,8 @@ var param={
 		//$(".addressList").html(dataText(res.data.content));
 		var person =res.data;
 			var color = getColor(person.name);
-			var photoTxt = person.avatar ? "<img class='um-circle' src='" + person.avatar + "'>" : person.name.slice(-2);
+			//var photoTxt = person.avatar ? "<img class='um-circle' src='" + person.avatar + "'>" : person.name.slice(-2);
+			var photoTxt = person.name.slice(-2);
 			$("#headImg").css("background", color).html(photoTxt);
 			$("#name").html(person.userName);
 			$("#topheader").html(person.userName);
@@ -54,7 +57,7 @@ var param={
 			$("#email").html(person.email);
 			$("#tel").prop("href", "tel:" + person.mobile);
 			//$(".hiddenId").val(person.usercode);
-		
+			_yhtId=res.data.yhtId;
 		
     }, function (err) {
         alert("获取失败"+JSON.stringify(err));
@@ -99,14 +102,13 @@ function closeWin() {
 }
 
 function openChat() {
-	var tenantid = common.G_CurUserInfo.tenantid;
-	var id = $(".hiddenId").val();
+	//var tenantid = common.G_CurUserInfo.tenantid;
+	//var id = $(".hiddenId").val();
 	var command = {
 		"method" : "YYIM.chat",
 		"params" : {
-			"chatID" : id, // 从消息列表获取
-			"extend" : JSON.stringify({"sendfrom":"app","tenantid":tenantid})
-		}
+			"chatID" : _yhtId, // 从消息列表获取
+ 		}
 	}
 	
 	//YYIM.chat(command,null,null)

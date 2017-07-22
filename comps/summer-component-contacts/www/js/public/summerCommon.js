@@ -12,7 +12,7 @@ function getDeviceidAndToken() {
 }
 function ajaxRequest(paramObj, successCallback, errorCallback){
 	//var testPath = "http://uculture-test.app.yyuap.com" + paramObj.url;
-		var testPath = "http://172.26.112.1:8080" + paramObj.url;
+		var testPath = "http://172.27.35.1:8080" + paramObj.url;
 	var header = getDeviceidAndToken();
 	if(paramObj.contentType){
 		header["Content-Type"] = paramObj.contentType;
