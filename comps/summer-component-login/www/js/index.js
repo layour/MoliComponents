@@ -41,7 +41,6 @@ var realLogin = function () {
         param: param
     }, function (res) {
         if (res.flag == 0) {
-            alert('登录成功')
             var userinfo = {
                 id: res.data.id,
                 yhtId: res.data.yhtId,
@@ -77,7 +76,6 @@ var realLogin = function () {
     })
 }
 function loginEMM(_uinfo, password) {
-    var accesstoken = _uinfo.accesstoken ? _uinfo.accesstoken : '';
     emm.writeConfig({
         "host": "https://emm.yonyoucloud.com",
         "port": "443"
@@ -86,9 +84,8 @@ function loginEMM(_uinfo, password) {
     emm.registerDevice({
         "username": _uinfo.account, //用户名
         "password": password, //密码
-        "companyId": "hrtest88",
+        "companyId": "moli",
         "istenantid": "false",//判断传入的是否是租户id值
-        "accesstoken": accesstoken
     }, "registerS()", "error()")
 }
     function demoLogin() {
@@ -118,7 +115,6 @@ function loginEMM(_uinfo, password) {
             "method": "YYIM.login",
             "params": {
                 "userinfo": userinfo,
-                "callback": 'upgradeApp()'
             }
         }
         cordova.exec(null, null, "XService", "callSync", [params]);
