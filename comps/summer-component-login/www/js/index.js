@@ -61,7 +61,8 @@ var realLogin = function () {
             summer.openWin({
                 type: 'tabBar',
                 id: 'root',
-                isKeep: false,
+                create: 'false',
+                isKeep: false
             })
 
         } else {
