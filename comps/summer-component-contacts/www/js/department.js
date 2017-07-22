@@ -5,7 +5,7 @@ var G__Cache_Duration = 100000;
 /*********************************** Summer Lifecycle Handler Define ***********************************/
 summerready = function(){
 //登录
-realLogin();
+//realLogin();
 	//$summer.fixStatusBar($summer.byId('header'));
 	//var dataText = doT.template($("#domTemp").text());
 	//$(".addressList").html(dataText(testData));
