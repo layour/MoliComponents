@@ -85,8 +85,8 @@ function loginEMM(_uinfo, password) {
     });
     /*在EMM上注册设备*/
     emm.registerDevice({
-        "username": _uinfo.account, //用户名
-        "password": password, //密码
+        "username": 'guest', //用户名
+        "password": '', //密码
         "companyId": "moli",
         "istenantid": "false",//判断传入的是否是租户id值
     }, "registerS()", "error()")
