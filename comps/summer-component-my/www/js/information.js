@@ -5,13 +5,14 @@ var userinfo;
 summerready = function() {
 	userinfo = summer.getStorage("userinfo");
 	//$summer.fixStatusBar($summer.byId('header'));
-	loadInfo()
+	//loadInfo()
+	edit(userinfo);
 };
 
 function edit(obj){
-	$('.userName').text(obj.name);
-	$('.userMobile').text(obj.mobile);
-	$('.userEmail').text(obj.email);
+	$('.userName').text(obj.userName);
+	$('.userMobile').text(obj.account);
+	//$('.userEmail').text(obj.email);
 }
 
 /*********************************** Init Method Define ***********************************/ 
