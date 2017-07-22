@@ -11,8 +11,8 @@ summerready = function() {
 
 function edit(obj){
 	$('.userName').text(obj.userName);
-	$('.userMobile').text(obj.account);
-	//$('.userEmail').text(obj.email);
+	$('.userMobile').text(obj.mobile);
+	$('.userEmail').text(obj.email);
 }
 
 /*********************************** Init Method Define ***********************************/ 
