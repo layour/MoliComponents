@@ -909,7 +909,10 @@
             $('.um-list.um-no-active').empty();
             $('.um-content .empty').removeClass('none');
         }
-        summer.hideProgress();
+        setTimeout(function(){
+        	summer.hideProgress();
+        },500);
+        
     }
     /*删除功能某项聊天*/
     function deleteItem(ele) {
